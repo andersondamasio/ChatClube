@@ -2,6 +2,8 @@
 
 namespace ChatClubeLibrary
 {
+
+
     public class Class1
     {
     }

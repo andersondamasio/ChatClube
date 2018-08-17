@@ -13,8 +13,13 @@ namespace com.chatclube
     {
         TextView textMessag;
 
+        public static string AzureBackendUrl = "http://localhost:5000";
+        public static bool UseMockDataStore = true;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
+
+           
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
