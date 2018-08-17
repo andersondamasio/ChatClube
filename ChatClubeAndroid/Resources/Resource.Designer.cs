@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("ChatClubeAndroid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("com.chatclube.Resource", IsApplication=true)]
 
-namespace ChatClubeAndroid
+namespace com.chatclube
 {
 	
 	
