@@ -11,14 +11,14 @@ namespace ChatClubeAndroid
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
-        TextView textMessage;
+        TextView textMessag;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
-            textMessage = FindViewById<TextView>(Resource.Id.message);
+            textMessag =  FindViewById<TextView>(Resource.Id.message);
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
         }
@@ -27,13 +27,13 @@ namespace ChatClubeAndroid
             switch (item.ItemId)
             {
                 case Resource.Id.navigation_home:
-                    textMessage.SetText(Resource.String.title_home);
+                    textMessag.SetText(Resource.String.title_home);
                     return true;
                 case Resource.Id.navigation_dashboard:
-                    textMessage.SetText(Resource.String.title_dashboard);
+                    textMessag.SetText(Resource.String.title_dashboard);
                     return true;
                 case Resource.Id.navigation_notifications:
-                    textMessage.SetText(Resource.String.title_notifications);
+                    textMessag.SetText(Resource.String.title_notifications);
                     return true;
             }
             return false;
