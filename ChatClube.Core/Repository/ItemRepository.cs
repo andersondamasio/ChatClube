@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
+using com.chatclube.Repository;
+using chatclube.com.Models;
 
-namespace chatclube.com.Models
+namespace chatclube.com.Repository
 {
-    public class ItemRepository : IItemRepository
+    public class ItemRepository : IRepository<Item>
     {
         private static ConcurrentDictionary<string, Item> items =
             new ConcurrentDictionary<string, Item>();

@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChatClubeLibrary\ChatClubeLibrary.csproj" />
+    <ProjectReference Include="..\ChatClube.Core\ChatClube.Core.csproj" />
   </ItemGroup>
 
 </Project>

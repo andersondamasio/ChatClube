@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>com.chatclube</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>ChatClubeIOS</AssemblyName>
+    <AssemblyName>ChatClube.IOS</AssemblyName>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -143,12 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entitlements.plist" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ChatClubeLibrary\ChatClubeLibrary.csproj">
-      <Project>{21cf3751-1a69-4f77-aeb3-603e80668e77}</Project>
-      <Name>ChatClubeLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

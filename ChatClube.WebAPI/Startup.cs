@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 
 using chatclube.com.Models;
+using com.chatclube.Repository;
 
 namespace chatclube.com.MobileAppService
 {
@@ -30,7 +31,7 @@ namespace chatclube.com.MobileAppService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton<IItemRepository, ItemRepository>();
+            services.AddSingleton<IRepository<Item>, IRepository<Item>>();
 
             services.AddSwaggerGen(c =>
             {

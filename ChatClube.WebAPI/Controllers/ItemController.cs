@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using chatclube.com.Models;
+using com.chatclube.Repository;
 
 namespace chatclube.com.Controllers
 {
@@ -9,9 +10,9 @@ namespace chatclube.com.Controllers
     public class ItemController : Controller
     {
 
-        private readonly IItemRepository ItemRepository;
+        private readonly IRepository<Item> ItemRepository;
 
-        public ItemController(IItemRepository itemRepository)
+        public ItemController(IRepository<Item> itemRepository)
         {
             ItemRepository = itemRepository;
         }
