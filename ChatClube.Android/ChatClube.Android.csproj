@@ -103,10 +103,19 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="System.Buffers">
+      <Version>4.5.0</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fragments\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChatClube.Core\ChatClube.Core.csproj">
+      <Project>{dd8bba97-19fb-4f55-b138-83ac54441e9f}</Project>
+      <Name>ChatClube.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

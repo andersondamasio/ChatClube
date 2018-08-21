@@ -5,6 +5,8 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using chatclube.com.Models;
+using com.chatclube.Repository;
 
 namespace com.chatclube
 {
@@ -24,6 +26,17 @@ namespace com.chatclube
             textMessag =  FindViewById<TextView>(Resource.Id.message);
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
+
+            var dbContext = new ChatClubeContext();
+          
+
+
+             var tracking = dbContext.Salas.Add(new Salas { sa_idSala = 1, sa_nome="Contatos" });
+       
+            dbContext.SaveChanges();
+
+           var lista = dbContext.Query<Salas>();
+
         }
         public bool OnNavigationItemSelected(IMenuItem item)
         {
