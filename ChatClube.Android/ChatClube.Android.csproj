@@ -60,6 +60,8 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\Start.cs" />
+    <Compile Include="Fragments\SalasFragment.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,17 +110,27 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Fragments\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ChatClube.Core\ChatClube.Core.csproj">
       <Project>{dd8bba97-19fb-4f55-b138-83ac54441e9f}</Project>
       <Name>ChatClube.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Salas.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SalasTemplate.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <Import Project="C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <!--<Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\Xamarin\Android
+   To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">
     </Target>

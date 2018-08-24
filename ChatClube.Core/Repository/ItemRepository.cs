@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using com.chatclube.Repository;
 using chatclube.com.Models;
+using com.chatclube.Repository.Config;
 
 namespace chatclube.com.Repository
 {
-    public class ItemRepository : IRepository<Item>
+    public class ItemRepository //: IRepository<Item>
     {
-        private static ConcurrentDictionary<string, Item> items =
+     /*   private static ConcurrentDictionary<string, Item> items =
             new ConcurrentDictionary<string, Item>();
 
         public ItemRepository()
@@ -53,6 +54,6 @@ namespace chatclube.com.Repository
         public void Update(Item item)
         {
             items[item.Id] = item;
-        }
+        }*/
     }
 }

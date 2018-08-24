@@ -5,8 +5,9 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using chatclube.com.Models;
+using com.chatclube.Fragments;
 using com.chatclube.Repository;
+using com.chatclube.Repository.Config;
 
 namespace com.chatclube
 {
@@ -27,33 +28,36 @@ namespace com.chatclube
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
 
-            var dbContext = new ChatClubeContext();
-          
-
-
-             var tracking = dbContext.Salas.Add(new Salas { sa_idSala = 1, sa_nome="Contatos" });
-       
-            dbContext.SaveChanges();
-
-           var lista = dbContext.Query<Salas>();
-
+            new SalaRepository().SalvarSala();
+            var teste = new SalaRepository().GetSalas();
         }
         public bool OnNavigationItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
                 case Resource.Id.navigation_home:
-                    textMessag.SetText(Resource.String.title_home);
+                    //textMessag.SetText(Resource.String.title_home);
                     return true;
                 case Resource.Id.navigation_dashboard:
-                    textMessag.SetText(Resource.String.title_dashboard);
+                    AbrirFragment();//textMessag.SetText(Resource.String.title_dashboard);
                     return true;
                 case Resource.Id.navigation_notifications:
-                    textMessag.SetText(Resource.String.title_notifications);
+                   // textMessag.SetText(Resource.String.title_notifications);
                     return true;
             }
             return false;
         }
+
+        private void AbrirFragment()
+        {
+            Fragment fragment = new SalasFragment();
+            var ft = FragmentManager.BeginTransaction();//SupportFragmentManager.BeginTransaction();
+            ft.Replace(Resource.Id.mainFrame, fragment);
+            ft.Commit();
+
+
+        }
+
     }
 }
 
