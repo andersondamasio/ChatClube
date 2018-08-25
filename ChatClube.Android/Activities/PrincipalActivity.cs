@@ -9,10 +9,10 @@ using com.chatclube.Fragments;
 using com.chatclube.Repository;
 using com.chatclube.Repository.Config;
 
-namespace com.chatclube
+namespace com.chatclube.Activities
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
+    public class PrincipalActivity : BaseActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
         TextView textMessag;
 
@@ -22,40 +22,33 @@ namespace com.chatclube
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.activity_main);
+            SetContentView(Resource.Layout.Principal);
 
-            textMessag =  FindViewById<TextView>(Resource.Id.message);
+            textMessag = FindViewById<TextView>(Resource.Id.message);
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
-
-            new SalaRepository().SalvarSala();
-            var teste = new SalaRepository().GetSalas();
+            AbrirFragment(new SalasFragment());
         }
         public bool OnNavigationItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
-                case Resource.Id.navigation_home:
-                    //textMessag.SetText(Resource.String.title_home);
+                case Resource.Id.navigation_SalasProximas:
+                    AbrirFragment(new SalasFragment());
                     return true;
-                case Resource.Id.navigation_dashboard:
-                    AbrirFragment();//textMessag.SetText(Resource.String.title_dashboard);
+                case Resource.Id.navigation_Conversas:
                     return true;
-                case Resource.Id.navigation_notifications:
-                   // textMessag.SetText(Resource.String.title_notifications);
+                case Resource.Id.navigation_Notificacoes:
                     return true;
-            }
+            }          
             return false;
         }
 
-        private void AbrirFragment()
+        private void AbrirFragment(Fragment fragment)
         {
-            Fragment fragment = new SalasFragment();
-            var ft = FragmentManager.BeginTransaction();//SupportFragmentManager.BeginTransaction();
-            ft.Replace(Resource.Id.mainFrame, fragment);
+            var ft = FragmentManager.BeginTransaction();
+            ft.Replace(Resource.Id.FL_Principal, fragment);
             ft.Commit();
-
-
         }
 
     }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using chatclube.com.Models;
 using com.chatclube.Repository;
+using com.chatclube.Repository.Config;
 
 namespace chatclube.com.Controllers
 {
@@ -71,7 +72,7 @@ namespace chatclube.com.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            ItemRepository.Remove(id);
+           // ItemRepository.Remove(id);
         }
     }
 }

@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">ChatClubeAndroid</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">Chat Clube</string>
+    <string name="SalasProximas">Salas</string>
+    <string name="Conversas">Conversas</string>
+    <string name="Notificacoes">Notificações</string>
 </resources>

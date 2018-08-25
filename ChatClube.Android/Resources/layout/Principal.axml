@@ -5,9 +5,10 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+	<include layout="@layout/toolbar"/>
 	 <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:id="@+id/mainFrame">
+        android:layout_height="match_parent" android:id="@+id/FL_Principal">
     </FrameLayout>   
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

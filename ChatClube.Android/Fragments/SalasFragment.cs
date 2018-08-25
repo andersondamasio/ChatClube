@@ -10,24 +10,35 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using com.chatclube.Adapters;
+using com.chatclube.Repository;
 
 namespace com.chatclube.Fragments
 {
     public class SalasFragment : Fragment
     {
-        public override void OnCreate(Bundle savedInstanceState)
+        private View view;
+        private ListView ListViewSalas { get { return view.FindViewById<ListView>(Resource.Id.ListViewSalas); } }
+        private TextView Empty { get { return view.FindViewById<TextView>(Android.Resource.Id.Empty); } }
+
+        private List<Sala> listSalas;
+
+        public override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            // Create your fragment here
+            Activity.SetProgressBarIndeterminateVisibility(true);
+            listSalas = await new SalaRepository().GetSalasAsync();
+            Activity.SetProgressBarIndeterminateVisibility(false);
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-             return inflater.Inflate(Resource.Layout.Salas, container, false);
-
-           // return base.OnCreateView(inflater, container, savedInstanceState);
+            view = inflater.Inflate(Resource.Layout.Salas, container, false);
+            new SalaRepository().SalvarSala();
+            var adapter = new SalasAdapter(Activity, listSalas);
+            ListViewSalas.Adapter = adapter;
+            ListViewSalas.EmptyView = Empty;
+            return view;
         }
     }
 }

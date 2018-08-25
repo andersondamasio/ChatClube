@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+ 
+    <ListView
+        android:id="@+id/ListViewSalas"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="#b5b5b5"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/list_selector" />
+ <TextView android:id="@android:id/empty"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-	<TextView
-		android:text="Damasio"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:minWidth="50px"
-		android:minHeight="50px"
-		android:id="@+id/textView1"
-		android:textAlignment="center" />
-
+    android:layout_height="match_parent"
+    android:text="Nenhuma Sala encontrada" />
 </LinearLayout>
