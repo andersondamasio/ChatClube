@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigation_SalasProximas"
         android:icon="@drawable/ic_chat_blue_light_18dp"
-        android:title="@string/SalasProximas" />
+        android:title="@string/SalasProximas"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/navigation_Conversas"
         android:icon="@drawable/ic_wifi_blue_light_18dp"
-        android:title="@string/Conversas" />
+        android:title="@string/Conversas"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/navigation_Notificacoes"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/Notificacoes" />
+        android:title="@string/Notificacoes"
+        app:showAsAction="ifRoom"/>
 
 </menu>

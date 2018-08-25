@@ -34,8 +34,7 @@ namespace com.chatclube.Activities
             switch (item.ItemId)
             {
                 case Resource.Id.navigation_SalasProximas:
-                    AbrirFragment(new SalasFragment());
-                    return true;
+                    return AbrirFragment(new SalasFragment());
                 case Resource.Id.navigation_Conversas:
                     return true;
                 case Resource.Id.navigation_Notificacoes:
@@ -44,11 +43,13 @@ namespace com.chatclube.Activities
             return false;
         }
 
-        private void AbrirFragment(Fragment fragment)
+        private bool AbrirFragment(Fragment fragment)
         {
             var ft = FragmentManager.BeginTransaction();
             ft.Replace(Resource.Id.FL_Principal, fragment);
+            ft.SetTransition(FragmentTransit.FragmentFade);
             ft.Commit();
+            return true;
         }
 
     }

@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using com.chatclube.Activities;
 using com.chatclube.Adapters;
 using com.chatclube.Repository;
 
@@ -31,6 +32,12 @@ namespace com.chatclube.Fragments
             Activity.SetProgressBarIndeterminateVisibility(false);
         }
 
+        private void ListViewSalas_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            Intent intent = new Intent(Activity, typeof(SalaActivity));
+            StartActivity(intent);
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             view = inflater.Inflate(Resource.Layout.Salas, container, false);
@@ -38,6 +45,11 @@ namespace com.chatclube.Fragments
             var adapter = new SalasAdapter(Activity, listSalas);
             ListViewSalas.Adapter = adapter;
             ListViewSalas.EmptyView = Empty;
+
+            #region eventos
+            ListViewSalas.ItemClick += ListViewSalas_ItemClick;
+            #endregion
+
             return view;
         }
     }
