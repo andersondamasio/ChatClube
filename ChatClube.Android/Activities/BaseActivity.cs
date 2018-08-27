@@ -19,8 +19,9 @@ namespace com.chatclube.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
+            
+
+
             /* RequestWindowFeature(WindowFeatures.IndeterminateProgress);
              RequestWindowFeature(WindowFeatures.ActionBar);
              SetProgressBarIndeterminate(true);*/

@@ -25,8 +25,8 @@ namespace com.chatclube.Activities
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Principal);
-            //Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-           // SetSupportActionBar(toolbar);
+            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
 
             tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
             viewPager = FindViewById<ViewPager>(Resource.Id.pager);

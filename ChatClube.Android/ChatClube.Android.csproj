@@ -577,9 +577,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\search.png" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\toolbar.axml" />
-  </ItemGroup>
   <Import Project="C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!--<Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\Xamarin\Android
