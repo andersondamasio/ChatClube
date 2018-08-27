@@ -1,20 +1,22 @@
-﻿using Android.App;
+﻿
+
+using Android.App;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.Design.Widget;
-using Android.Support.V7.App;
+using Android.Support.V4.View;
 using Android.Views;
-using Android.Widget;
+using com.chatclube.Adapters;
+using Android.Support.V7.Widget;
 using com.chatclube.Fragments;
-using com.chatclube.Repository;
-using com.chatclube.Repository.Config;
 
 namespace com.chatclube.Activities
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class PrincipalActivity : BaseActivity, BottomNavigationView.IOnNavigationItemSelectedListener
+    public class PrincipalActivity : BaseActivity
     {
-        TextView textMessag;
+       private TabLayout tabLayout;
+       private ViewPager viewPager;
+       private ViewPagerAdapter viewPagerAdapter;
 
         public static string AzureBackendUrl = "http://localhost:5000";
         public static bool UseMockDataStore = true;
@@ -23,35 +25,26 @@ namespace com.chatclube.Activities
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Principal);
+            //Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+           // SetSupportActionBar(toolbar);
 
-            textMessag = FindViewById<TextView>(Resource.Id.message);
-            BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
-            navigation.SetOnNavigationItemSelectedListener(this);
-            AbrirFragment(new SalasFragment());
+            tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
+            viewPager = FindViewById<ViewPager>(Resource.Id.pager);
+            viewPagerAdapter = new ViewPagerAdapter(SupportFragmentManager);
+            viewPager.Adapter = viewPagerAdapter;
+            tabLayout.SetupWithViewPager(viewPager);
+
+            viewPagerAdapter.AddFragment(new SalasFragment(), GetString(Resource.String.SalasProximas));
+            viewPagerAdapter.AddFragment(new SalasFragment(), GetString(Resource.String.Conversas));
+            viewPagerAdapter.AddFragment(new SalasFragment(), GetString(Resource.String.Notificacoes));
+            viewPagerAdapter.NotifyDataSetChanged();
         }
-        public bool OnNavigationItemSelected(IMenuItem item)
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            switch (item.ItemId)
-            {
-                case Resource.Id.navigation_SalasProximas:
-                    return AbrirFragment(new SalasFragment());
-                case Resource.Id.navigation_Conversas:
-                    return true;
-                case Resource.Id.navigation_Notificacoes:
-                    return true;
-            }          
-            return false;
+             MenuInflater.Inflate(Resource.Menu.menu_principal, menu);
+            return base.OnCreateOptionsMenu(menu);
         }
-
-        private bool AbrirFragment(Fragment fragment)
-        {
-            var ft = FragmentManager.BeginTransaction();
-            ft.Replace(Resource.Id.FL_Principal, fragment);
-            ft.SetTransition(FragmentTransit.FragmentFade);
-            ft.Commit();
-            return true;
-        }
-
     }
 }
 

@@ -9,6 +9,7 @@ using Swashbuckle.AspNetCore.Swagger;
 
 using chatclube.com.Models;
 using com.chatclube.Repository;
+using com.chatclube.Repository.Config;
 
 namespace chatclube.com.MobileAppService
 {

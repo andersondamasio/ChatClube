@@ -9,7 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Views;
-using Android.Widget;
+using Android.Support.V7.Widget;
 
 namespace com.chatclube.Activities
 {
@@ -19,9 +19,11 @@ namespace com.chatclube.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            RequestWindowFeature(WindowFeatures.IndeterminateProgress);
-            SetProgressBarIndeterminate(true);
+            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            /* RequestWindowFeature(WindowFeatures.IndeterminateProgress);
+             RequestWindowFeature(WindowFeatures.ActionBar);
+             SetProgressBarIndeterminate(true);*/
 
             /*RequestWindowFeature(WindowFeatures.ActionBar);
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
