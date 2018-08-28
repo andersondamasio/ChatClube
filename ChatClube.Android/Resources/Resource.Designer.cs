@@ -3365,22 +3365,19 @@ namespace com.chatclube
 			public const int SalasTemplate = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int SalaTemplate = 2130968637;
+			public const int select_dialog_item_material = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int select_dialog_item_material = 2130968638;
+			public const int select_dialog_multichoice_material = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int select_dialog_multichoice_material = 2130968639;
+			public const int select_dialog_singlechoice_material = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int select_dialog_singlechoice_material = 2130968640;
+			public const int support_simple_spinner_dropdown_item = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int support_simple_spinner_dropdown_item = 2130968641;
-			
-			// aapt resource value: 0x7f040042
-			public const int tooltip = 2130968642;
+			public const int tooltip = 2130968641;
 			
 			static Layout()
 			{
