@@ -42,7 +42,7 @@ namespace com.chatclube.Fragments
         {
             view = inflater.Inflate(Resource.Layout.Salas, container, false);
             new SalaRepository().SalvarSala();
-            var adapter = new SalaRecyclerViewAdapter(listSalas);
+            var adapter = new SalasAdapter(listSalas);
 
             ListViewSalas.SetLayoutManager(new LinearLayoutManager(Activity));
             ListViewSalas.SetAdapter(adapter);

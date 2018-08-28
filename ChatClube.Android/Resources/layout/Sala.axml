@@ -7,7 +7,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@null">
-
+	<android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 	  <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -15,8 +18,10 @@
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
-    <ListView
-        android:id="@+id/chat_list_view"
+   
+    </android.support.design.widget.AppBarLayout>
+		<ListView
+        android:id="@+id/ovLV_Sala"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="8dp"
@@ -59,12 +64,12 @@
                 android:src="@drawable/input_emoji"/>
 
             <EditText
-                android:id="@+id/chat_edit_text1"
+                android:id="@+id/ovET_Mensagem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="12dp"
-                android:hint="@string/type_your_message"
+                android:hint="@string/digite_sua_mensagem"
                 android:singleLine="false"
                 android:inputType="textMultiLine"
                 android:textSize="18sp"
@@ -74,7 +79,7 @@
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/enter_chat1"
+            android:id="@+id/ovIB_Enviar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="bottom"

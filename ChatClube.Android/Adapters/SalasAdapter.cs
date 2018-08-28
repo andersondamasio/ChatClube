@@ -14,11 +14,11 @@ using com.chatclube.Activities;
 
 namespace com.chatclube.Adapters
 {
-    internal class SalaRecyclerViewAdapter : RecyclerView.Adapter, Android.Views.View.IOnClickListener
+    internal class SalasAdapter : RecyclerView.Adapter, Android.Views.View.IOnClickListener
     {
         private List<Sala> itens;
 
-        public SalaRecyclerViewAdapter(List<Sala> _itens)
+        public SalasAdapter(List<Sala> _itens)
         {
             itens = _itens;
         }
@@ -54,7 +54,6 @@ namespace com.chatclube.Adapters
             public TextView ovTVNomeSala, ovTVNumeroUsuarios;
             public SalaViewHolder(View itemView) : base(itemView)
             {
-                // Locate and cache view references:
                 ovTVNomeSala = itemView.FindViewById<TextView>(Resource.Id.ovTVNomeSala);
                 ovTVNumeroUsuarios = itemView.FindViewById<TextView>(Resource.Id.ovTVNumeroUsuarios);
             }

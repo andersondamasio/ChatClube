@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Chat Clube</string>
-    <string name="SalasProximas">Salas</string>
-    <string name="Conversas">Conversas</string>
-    <string name="Notificacoes">Notificações</string>
-  <string name="Configuracoes">Configurações</string>
-  <string name="Sala">Sala</string>
+    <string name="salas_proximas">Salas</string>
+    <string name="conversas">Conversas</string>
+    <string name="notificacoes">Notificações</string>
+  <string name="configuracoes">Configurações</string>
+  <string name="sala">Sala</string>
   
 
-  <string name="type_your_message">Type a message</string>
+  <string name="digite_sua_mensagem">digite sua mensagem</string>
   <string name="NoRecent">No recent</string>
 </resources>

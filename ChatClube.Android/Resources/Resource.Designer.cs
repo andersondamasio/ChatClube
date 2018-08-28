@@ -2651,14 +2651,8 @@ namespace com.chatclube
 			// aapt resource value: 0x7f080047
 			public const int center_vertical = 2131230791;
 			
-			// aapt resource value: 0x7f0800b3
-			public const int chat_edit_text1 = 2131230899;
-			
 			// aapt resource value: 0x7f0800af
 			public const int chat_layout = 2131230895;
-			
-			// aapt resource value: 0x7f0800b0
-			public const int chat_list_view = 2131230896;
 			
 			// aapt resource value: 0x7f080073
 			public const int checkbox = 2131230835;
@@ -2737,9 +2731,6 @@ namespace com.chatclube
 			
 			// aapt resource value: 0x7f080040
 			public const int enterAlwaysCollapsed = 2131230784;
-			
-			// aapt resource value: 0x7f0800b4
-			public const int enter_chat1 = 2131230900;
 			
 			// aapt resource value: 0x7f080041
 			public const int exitUntilCollapsed = 2131230785;
@@ -2869,6 +2860,15 @@ namespace com.chatclube
 			
 			// aapt resource value: 0x7f0800b8
 			public const int outgoing_layout_bubble = 2131230904;
+			
+			// aapt resource value: 0x7f0800b3
+			public const int ovET_Mensagem = 2131230899;
+			
+			// aapt resource value: 0x7f0800b4
+			public const int ovIB_Enviar = 2131230900;
+			
+			// aapt resource value: 0x7f0800b0
+			public const int ovLV_Sala = 2131230896;
 			
 			// aapt resource value: 0x7f0800be
 			public const int ovTVNomeSala = 2131230910;
@@ -3365,19 +3365,22 @@ namespace com.chatclube
 			public const int SalasTemplate = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int select_dialog_item_material = 2130968637;
+			public const int SalaTemplate = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int select_dialog_multichoice_material = 2130968638;
+			public const int select_dialog_item_material = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int select_dialog_singlechoice_material = 2130968639;
+			public const int select_dialog_multichoice_material = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int support_simple_spinner_dropdown_item = 2130968640;
+			public const int select_dialog_singlechoice_material = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int tooltip = 2130968641;
+			public const int support_simple_spinner_dropdown_item = 2130968641;
+			
+			// aapt resource value: 0x7f040042
+			public const int tooltip = 2130968642;
 			
 			static Layout()
 			{
@@ -3433,23 +3436,8 @@ namespace com.chatclube
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f09002b
-			public const int Configuracoes = 2131296299;
-			
-			// aapt resource value: 0x7f090029
-			public const int Conversas = 2131296297;
-			
 			// aapt resource value: 0x7f09002e
 			public const int NoRecent = 2131296302;
-			
-			// aapt resource value: 0x7f09002a
-			public const int Notificacoes = 2131296298;
-			
-			// aapt resource value: 0x7f09002c
-			public const int Sala = 2131296300;
-			
-			// aapt resource value: 0x7f090028
-			public const int SalasProximas = 2131296296;
 			
 			// aapt resource value: 0x7f090000
 			public const int abc_action_bar_home_description = 2131296256;
@@ -3550,6 +3538,18 @@ namespace com.chatclube
 			// aapt resource value: 0x7f090020
 			public const int character_counter_pattern = 2131296288;
 			
+			// aapt resource value: 0x7f09002b
+			public const int configuracoes = 2131296299;
+			
+			// aapt resource value: 0x7f090029
+			public const int conversas = 2131296297;
+			
+			// aapt resource value: 0x7f09002d
+			public const int digite_sua_mensagem = 2131296301;
+			
+			// aapt resource value: 0x7f09002a
+			public const int notificacoes = 2131296298;
+			
 			// aapt resource value: 0x7f090021
 			public const int password_toggle_content_description = 2131296289;
 			
@@ -3565,14 +3565,17 @@ namespace com.chatclube
 			// aapt resource value: 0x7f090025
 			public const int path_password_strike_through = 2131296293;
 			
+			// aapt resource value: 0x7f09002c
+			public const int sala = 2131296300;
+			
+			// aapt resource value: 0x7f090028
+			public const int salas_proximas = 2131296296;
+			
 			// aapt resource value: 0x7f090011
 			public const int search_menu_title = 2131296273;
 			
 			// aapt resource value: 0x7f090026
 			public const int status_bar_notification_info_overflow = 2131296294;
-			
-			// aapt resource value: 0x7f09002d
-			public const int type_your_message = 2131296301;
 			
 			static String()
 			{

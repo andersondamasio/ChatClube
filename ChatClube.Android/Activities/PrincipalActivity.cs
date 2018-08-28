@@ -34,9 +34,9 @@ namespace com.chatclube.Activities
             viewPager.Adapter = viewPagerAdapter;
             tabLayout.SetupWithViewPager(viewPager);
 
-            viewPagerAdapter.AddFragment(new SalasFragment(), GetString(Resource.String.SalasProximas));
-            viewPagerAdapter.AddFragment(new SalasFragment(), GetString(Resource.String.Conversas));
-            viewPagerAdapter.AddFragment(new SalasFragment(), GetString(Resource.String.Notificacoes));
+            viewPagerAdapter.AddFragment(new SalasFragment(), GetString(Resource.String.salas_proximas));
+            viewPagerAdapter.AddFragment(new SalasFragment(), GetString(Resource.String.conversas));
+            viewPagerAdapter.AddFragment(new SalasFragment(), GetString(Resource.String.notificacoes));
             viewPagerAdapter.NotifyDataSetChanged();
         }
 

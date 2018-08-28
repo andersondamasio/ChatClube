@@ -16,12 +16,12 @@ namespace com.chatclube.Activities
     [Activity(Label = "BaseActivity")]
     public class BaseActivity : AppCompatActivity
     {
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            
 
-
+           
             /* RequestWindowFeature(WindowFeatures.IndeterminateProgress);
              RequestWindowFeature(WindowFeatures.ActionBar);
              SetProgressBarIndeterminate(true);*/
@@ -32,5 +32,7 @@ namespace com.chatclube.Activities
             ProgressBar progressBar = toolbar.FindViewById<ProgressBar>(Resource.Id.progress_spinner);
             progressBar.Visibility = ViewStates.Visible;*/
         }
+
+    
     }
 }

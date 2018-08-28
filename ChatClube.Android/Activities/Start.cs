@@ -15,7 +15,9 @@ namespace com.chatclube.Activities
     [Application]
     public class Start : Application
     {
-        public static Activity currentActivity { get; set; }
+        private static Start Instance;
+        public static volatile Handler applicationHandler = null;
+
 
         public Start(IntPtr handle, JniHandleOwnership transfer)
             : base(handle, transfer)
@@ -24,7 +26,11 @@ namespace com.chatclube.Activities
         public override void OnCreate()
         {
             base.OnCreate();
- 
+
+            Instance = this;
+
+            applicationHandler = new Handler(getInstance().MainLooper);
+
             AndroidEnvironment.UnhandledExceptionRaiser += (sender, args) =>
             {
                 args.Handled = true;
@@ -38,6 +44,11 @@ namespace com.chatclube.Activities
             AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
             {
             };
+        }
+
+        public static Start getInstance()
+        {
+            return Instance;
         }
     }
 }
