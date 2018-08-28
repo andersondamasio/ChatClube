@@ -64,14 +64,11 @@
     <Compile Include="Activities\PrincipalActivity.cs" />
     <Compile Include="Activities\SalaActivity.cs" />
     <Compile Include="Activities\Start.cs" />
-    <Compile Include="Adapters\SalaAdapter.cs" />
-    <Compile Include="Adapters\SalasAdapter.cs" />
+    <Compile Include="Adapters\SalaRecyclerViewAdapter.cs" />
     <Compile Include="Adapters\ViewPagerAdapter.cs" />
     <Compile Include="Fragments\SalasFragment.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\AndroidUtilities.cs" />
-    <Compile Include="Widgets\Emoji.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -580,14 +577,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\search.png" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\SalaTemplate.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <Import Project="C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-  <!--<Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\Xamarin\Android
+ <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <!--C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\Xamarin\Android
    To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">
