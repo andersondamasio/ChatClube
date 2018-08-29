@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatClube.WebAPI", "ChatClu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatClube.Core", "ChatClube.Core\ChatClube.Core.csproj", "{DD8BBA97-19FB-4F55-B138-83AC54441E9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatClube.Web", "ChatClube.Web\ChatClube.Web.csproj", "{EF9A6861-E65A-427B-B9EC-9E9F318CDF14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,18 @@ Global
 		{DD8BBA97-19FB-4F55-B138-83AC54441E9F}.Release|iPhone.Build.0 = Release|Any CPU
 		{DD8BBA97-19FB-4F55-B138-83AC54441E9F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{DD8BBA97-19FB-4F55-B138-83AC54441E9F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{EF9A6861-E65A-427B-B9EC-9E9F318CDF14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF9A6861-E65A-427B-B9EC-9E9F318CDF14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF9A6861-E65A-427B-B9EC-9E9F318CDF14}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{EF9A6861-E65A-427B-B9EC-9E9F318CDF14}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{EF9A6861-E65A-427B-B9EC-9E9F318CDF14}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{EF9A6861-E65A-427B-B9EC-9E9F318CDF14}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{EF9A6861-E65A-427B-B9EC-9E9F318CDF14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF9A6861-E65A-427B-B9EC-9E9F318CDF14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF9A6861-E65A-427B-B9EC-9E9F318CDF14}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{EF9A6861-E65A-427B-B9EC-9E9F318CDF14}.Release|iPhone.Build.0 = Release|Any CPU
+		{EF9A6861-E65A-427B-B9EC-9E9F318CDF14}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{EF9A6861-E65A-427B-B9EC-9E9F318CDF14}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

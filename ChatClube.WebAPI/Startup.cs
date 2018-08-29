@@ -13,8 +13,11 @@ using com.chatclube.Repository.Config;
 
 namespace chatclube.com.MobileAppService
 {
+    //[assembly: OwinStartup(typeof())]
     public class Startup
     {
+
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()

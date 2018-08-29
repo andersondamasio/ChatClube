@@ -6,6 +6,7 @@ using Android.Views;
 using Android.Widget;
 using com.chatclube.Adapters;
 using com.chatclube.Models;
+using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;
 
@@ -21,13 +22,30 @@ namespace com.chatclube.Activities
 
         private List<ChatMessage> mensagens = new List<ChatMessage>();
         SalaAdapter salaAdapter = null;
-     
-        protected override void OnCreate(Bundle savedInstanceState)
+
+        private IHubProxy mhubProxy;
+
+        protected override async void OnCreateAsync(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
+            base.OnCreateAsync(savedInstanceState);
             SetContentView(Resource.Layout.Sala);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
+
+           /* HubConnection hubConnection = new HubConnection("http://localhost:54098/");
+            mhubProxy = hubConnection.CreateHubProxy("ChatHub");
+            try
+            {
+                await hubConnection.Start();
+            }
+            catch (Exception)
+            {
+                //Catch handle Errors.   
+            }
+            mhubProxy.On<string, string>("Enviar", (rawY, initY) => {
+               
+            });*/
+
 
             #region eventos
             ovIB_Enviar.SetOnClickListener(this);
