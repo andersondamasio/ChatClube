@@ -7,19 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@null">
-	<android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-	  <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-   
-    </android.support.design.widget.AppBarLayout>
+	
+	 
+
 		<ListView
         android:id="@+id/ovLV_Sala"
         android:layout_width="match_parent"
@@ -61,6 +51,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="bottom"
+				  android:visibility = "gone"
                 android:src="@drawable/input_emoji"/>
 
             <EditText

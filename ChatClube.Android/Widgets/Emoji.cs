@@ -254,7 +254,17 @@ namespace com.chatclube.Widgets
             }
 
         }
-
+        public static Drawable getEmojiBigDrawable(ulong code)
+        {
+            EmojiDrawable ed = getEmojiDrawable(code);
+            if (ed == null)
+            {
+                return null;
+            }
+            ed.SetBounds(0, 0, bigImgSize, bigImgSize);
+            //ed.fullSize = true;
+            return ed;
+        }
 
         public static ICharSequence replaceEmoji(ICharSequence cs, Paint.FontMetricsInt fontMetrics, int size)
         {

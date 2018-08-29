@@ -1,15 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace com.chatclube.Repository.Config
+namespace com.chatclube
 {
     public partial class ChatClubeContext : DbContext
     {
         public ChatClubeContext()
         {
-            Database.EnsureCreated();
         }
 
         public ChatClubeContext(DbContextOptions<ChatClubeContext> options)
@@ -17,18 +15,13 @@ namespace com.chatclube.Repository.Config
         {
         }
 
-        public DbSet<Sala> Sala { get; set; }
+        public virtual DbSet<Sala> Sala { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        { 
+        {
             if (!optionsBuilder.IsConfigured)
             {
-                String databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "chatclube.db");
-                optionsBuilder.UseSqlite($"Filename={databasePath}");
-
-                // iOS
-                //var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", "banco.db")
-
             }
         }
 

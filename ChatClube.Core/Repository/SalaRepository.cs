@@ -20,9 +20,9 @@ namespace com.chatclube.Repository
 
             var sala = GetAll().LastOrDefault();
             if (sala == null)
-                sala = new Sala { IdSala = 1, Nome = "Sala 1" };
+                sala = new Sala { IDSala = 1, Nome = "Sala 1" };
             else
-                sala = new Sala { IdSala = sala.IdSala+1, Nome = $"Sala {sala.IdSala + 1}" };
+                sala = new Sala { IDSala = sala.IDSala+1, Nome = $"Sala {sala.IDSala + 1}" };
 
             Add(sala);
         }

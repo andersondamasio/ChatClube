@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace com.chatclube
 {
-    public partial class Sala
+    public partial class Usuario
     {
-        public int IDSala { get; set; }
+        public int IDUsuario { get; set; }
         public string Nome { get; set; }
+        public string Sobrenome { get; set; }
     }
 }
-
