@@ -21,9 +21,9 @@ namespace com.chatclube.Activities
         public static string AzureBackendUrl = "http://localhost:5000";
         public static bool UseMockDataStore = true;
 
-        protected override void OnCreateAsync(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreateAsync(savedInstanceState);
+            base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Principal);
             Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);

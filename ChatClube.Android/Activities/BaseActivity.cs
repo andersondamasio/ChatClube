@@ -17,7 +17,7 @@ namespace com.chatclube.Activities
     public class BaseActivity : AppCompatActivity
     {
         
-        protected override void OnCreateAsync(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 

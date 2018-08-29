@@ -25,9 +25,9 @@ namespace com.chatclube.Activities
 
         private IHubProxy mhubProxy;
 
-        protected override async void OnCreateAsync(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreateAsync(savedInstanceState);
+            base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Sala);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
