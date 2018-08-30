@@ -14,6 +14,7 @@ using Android.Widget;
 using com.chatclube.Activities;
 using com.chatclube.Adapters;
 using com.chatclube.Repository;
+using com.chatclube.Utils;
 
 namespace com.chatclube.Fragments
 {
@@ -31,6 +32,9 @@ namespace com.chatclube.Fragments
             //Activity.SetProgressBarIndeterminateVisibility(true);
             listSalas = await new SalaRepository().GetSalasAsync();
             //Activity.SetProgressBarIndeterminateVisibility(false);
+
+            var teste = DroidUtils.WifiInfo();
+
         }
 
         private void ListViewSalas_ItemClick(object sender, AdapterView.ItemClickEventArgs e)

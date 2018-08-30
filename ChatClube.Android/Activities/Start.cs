@@ -17,7 +17,7 @@ namespace com.chatclube.Activities
     {
         private static Start Instance;
         public static volatile Handler applicationHandler = null;
-
+        public static Activity currentActivity { get; set; }
 
         public Start(IntPtr handle, JniHandleOwnership transfer)
             : base(handle, transfer)

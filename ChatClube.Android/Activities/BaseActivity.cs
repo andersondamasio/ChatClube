@@ -20,8 +20,8 @@ namespace com.chatclube.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Start.currentActivity = this;
 
-           
             /* RequestWindowFeature(WindowFeatures.IndeterminateProgress);
              RequestWindowFeature(WindowFeatures.ActionBar);
              SetProgressBarIndeterminate(true);*/
