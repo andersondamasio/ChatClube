@@ -11,6 +11,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using com.chatclube.Activities;
+using com.chatclube.SalaX;
 
 namespace com.chatclube.Adapters
 {
@@ -21,6 +22,12 @@ namespace com.chatclube.Adapters
         public SalasAdapter(List<Sala> _itens)
         {
             itens = _itens;
+        }
+
+
+        public void Add(Sala sala)
+        {
+            itens.Add(sala);
         }
 
         public override int ItemCount => itens.Count;

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using com.chatclube.SalaX;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace com.chatclube.Models
+namespace com.chatclube.Models.MensagemX
 {
     public class Mensagem
     {

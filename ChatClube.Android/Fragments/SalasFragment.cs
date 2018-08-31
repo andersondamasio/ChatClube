@@ -13,7 +13,10 @@ using Android.Views;
 using Android.Widget;
 using com.chatclube.Activities;
 using com.chatclube.Adapters;
+using com.chatclube.Core;
 using com.chatclube.Repository;
+using com.chatclube.Repository.SalaX;
+using com.chatclube.SalaX;
 using com.chatclube.Utils;
 
 namespace com.chatclube.Fragments
@@ -25,33 +28,31 @@ namespace com.chatclube.Fragments
         private TextView Empty { get { return view.FindViewById<TextView>(Resource.Id.empty_view); } }
 
         private List<Sala> listSalas;
-        
-        public override async void OnCreate(Bundle savedInstanceState)
+        private SalasAdapter adapter;
+
+
+        public async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            //Activity.SetProgressBarIndeterminateVisibility(true);
             listSalas = await new SalaRepository().GetSalasAsync();
-            //Activity.SetProgressBarIndeterminateVisibility(false);
-
-            var teste = DroidUtils.WifiInfo();
-
+            adapter = new SalasAdapter(listSalas);
         }
 
         private void ListViewSalas_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-          
+
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             view = inflater.Inflate(Resource.Layout.Salas, container, false);
-            new SalaRepository().SalvarSala();
-            var adapter = new SalasAdapter(listSalas);
-
+            if (adapter == null)
+                adapter = new SalasAdapter(listSalas);
+            else adapter.NotifyDataSetChanged();
             ListViewSalas.SetLayoutManager(new LinearLayoutManager(Activity));
             ListViewSalas.SetAdapter(adapter);
 
-            if (listSalas.Count == 0)
+            if ((listSalas?.Count ?? 0) == 0)
             {
                 ListViewSalas.Visibility = ViewStates.Gone;
                 Empty.Visibility = ViewStates.Visible;
@@ -67,6 +68,18 @@ namespace com.chatclube.Fragments
             #endregion
 
             return view;
+        }
+
+        public async void Refresh()
+        {
+            if (adapter == null)
+                adapter = new SalasAdapter(listSalas);
+            else
+            {
+                listSalas = await new SalaRepository().GetSalasAsync();
+                adapter = new SalasAdapter(listSalas);
+                adapter.NotifyDataSetChanged();
+            }
         }
     }
 }

@@ -8,15 +8,18 @@ using Android.Views;
 using com.chatclube.Adapters;
 using Android.Support.V7.Widget;
 using com.chatclube.Fragments;
+using com.chatclube.Utils;
+using com.chatclube.Repository.SalaX;
 
 namespace com.chatclube.Activities
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class PrincipalActivity : BaseActivity
     {
-       private TabLayout tabLayout;
-       private ViewPager viewPager;
-       private ViewPagerAdapter viewPagerAdapter;
+        private TabLayout tabLayout;
+        private ViewPager viewPager;
+        private ViewPagerAdapter viewPagerAdapter;
+        SalasFragment salasFragment;
 
         public static string AzureBackendUrl = "http://localhost:5000";
         public static bool UseMockDataStore = true;
@@ -34,16 +37,57 @@ namespace com.chatclube.Activities
             viewPager.Adapter = viewPagerAdapter;
             tabLayout.SetupWithViewPager(viewPager);
 
-            viewPagerAdapter.AddFragment(new SalasFragment(), GetString(Resource.String.salas_proximas));
-            viewPagerAdapter.AddFragment(new SalasFragment(), GetString(Resource.String.conversas));
-            viewPagerAdapter.AddFragment(new SalasFragment(), GetString(Resource.String.notificacoes));
+            salasFragment = new SalasFragment();
+
+            viewPagerAdapter.AddFragment(salasFragment, GetString(Resource.String.salas_proximas));
+            viewPagerAdapter.AddFragment(new Android.Support.V4.App.Fragment(), GetString(Resource.String.conversas));
+            viewPagerAdapter.AddFragment(new Android.Support.V4.App.Fragment(), GetString(Resource.String.notificacoes));
             viewPagerAdapter.NotifyDataSetChanged();
+
+            IniciaProcessos();
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-             MenuInflater.Inflate(Resource.Menu.menu_principal, menu);
+            MenuInflater.Inflate(Resource.Menu.menu_principal, menu);
             return base.OnCreateOptionsMenu(menu);
+        }
+
+        private async void IniciaProcessos()
+        {
+            Xamarin.Essentials.Connectivity.ConnectivityChanged += null;
+            Xamarin.Essentials.Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+
+            SalvarSalaWifi();
+        }
+
+        private void SalvarSalaWifi()
+        {
+            var wiffiInfo = DroidUtils.GetWifi();
+
+            if (wiffiInfo.HasValue)
+            {
+                if (wiffiInfo.Value.Info != null)
+                {
+                    var info = wiffiInfo.Value.Info;
+
+                    new SalaRepository().InsertUpdateSalaWifi(info.SSID, info.BSSID);
+                }
+            }
+        }
+
+
+        private void Connectivity_ConnectivityChanged(object sender, Xamarin.Essentials.ConnectivityChangedEventArgs e)
+        {
+           if(e.NetworkAccess == Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                SalvarSalaWifi();
+                salasFragment.Refresh();
+                Android.Support.V4.App.FragmentTransaction ft = SupportFragmentManager.BeginTransaction();
+                ft.Detach(salasFragment);
+                ft.Attach(salasFragment);
+                ft.Commit();
+            }
         }
     }
 }

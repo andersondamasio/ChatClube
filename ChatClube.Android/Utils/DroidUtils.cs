@@ -25,6 +25,7 @@ using System.Net.Http;
 using Android.Text;
 using com.chatclube.Models;
 using Android;
+using com.chatclube.Models.MensagemX;
 
 namespace com.chatclube.Utils
 {
@@ -290,8 +291,8 @@ namespace com.chatclube.Utils
         public static bool IsWifiAvailable(Context context)
         {
             ConnectivityManager connectivityManager = (ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
-            NetworkInfo wifiNetworkInfo = connectivityManager.GetNetworkInfo(ConnectivityType.Wifi);
-            return wifiNetworkInfo != null && wifiNetworkInfo.IsConnected;
+            NetworkInfo wifiNetworkInfo = connectivityManager.ActiveNetworkInfo;
+            return wifiNetworkInfo != null && (wifiNetworkInfo.Type == ConnectivityType.Wifi && wifiNetworkInfo.IsConnected);         
         }
 
         public static HubConnection _hubConnection;
@@ -344,19 +345,15 @@ namespace com.chatclube.Utils
             return false;
         }
 
-        public static Tuple<WifiInfo, IList<ScanResult>> WifiInfo()
+        public static (WifiInfo Info, IList<ScanResult> List)? GetWifi()
         {
             try
             {
-                if (!DroidUtils.IsWifiAvailable(Application.Context))
+                if (!IsWifiAvailable(Application.Context))
                     return null;
 
-              var teste01 =  Xamarin.Essentials.Connectivity.NetworkAccess;
-            
-
-
                 WifiManager wifiManager = (WifiManager)Application.Context.GetSystemService(Context.WifiService);
-                return new Tuple<Android.Net.Wifi.WifiInfo, IList<ScanResult>>(wifiManager.ConnectionInfo, wifiManager.ScanResults);
+                return (Info: wifiManager.ConnectionInfo, List: wifiManager.ScanResults);
             }
             catch (Exception ex)
             {
@@ -376,7 +373,6 @@ namespace com.chatclube.Utils
                 return null;
             }
         }
-
 
         public static void AbreConfirmacao(Android.App.Activity activity, string titulo, string mensagem, EventHandler<DialogClickEventArgs> eventoSim, EventHandler<DialogClickEventArgs> eventoNao, bool permitirFechar = false)
         {
