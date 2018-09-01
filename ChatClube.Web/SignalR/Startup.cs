@@ -12,6 +12,7 @@ namespace ChatClube.Web.SignalR
         public void Configuration(IAppBuilder app)
         {
             app.MapSignalR();
+
         }
     }
 }

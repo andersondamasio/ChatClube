@@ -11,9 +11,20 @@ namespace com.chatclube.Repository.Config
          ChatClubeContext chatClubeContext;
         private DbSet<T> dbSet;
 
+
+        /*  public DbContextOptions GetDbContextOptions(Action<DbContextOptions> actionContextOptions)
+          {
+
+               return dbContextOptions.Invoke()
+
+          }*/
+
+
         public Repository()
         {
-            this.chatClubeContext = new ChatClubeContext();
+            if (ChatClubeContext.dbContextOptions != null)
+                chatClubeContext = new ChatClubeContext(ChatClubeContext.dbContextOptions);
+            else chatClubeContext = new ChatClubeContext();
             this.dbSet = chatClubeContext.Set<T>();
         }
 

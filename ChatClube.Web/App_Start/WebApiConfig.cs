@@ -1,4 +1,7 @@
-﻿using System;
+﻿using com.chatclube.Repository.Config;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -19,6 +22,16 @@ namespace ChatClube.Web
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            ConfigureChatClubeContext();
+        }
+
+        public static void ConfigureChatClubeContext()
+        {
+            var dbOptions =
+               new DbContextOptionsBuilder<ChatClubeContext>()
+               .UseSqlServer(@"Server=localhost;Database=ChatClube;Trusted_Connection=true;");
+            ChatClubeContext.dbContextOptions = dbOptions.Options;
         }
     }
 }

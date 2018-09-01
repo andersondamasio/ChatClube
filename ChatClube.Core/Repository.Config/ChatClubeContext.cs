@@ -1,6 +1,10 @@
-﻿using com.chatclube.UsuarioX;
-using com.chatclube.SalaX;
+﻿using com.chatclube.SalaX;
+using com.chatclube.UsuarioX;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,29 +13,49 @@ namespace com.chatclube.Repository.Config
 {
     public partial class ChatClubeContext : DbContext
     {
+        public static IList<string> Logs = null;
+
+        private static ILoggerFactory LoggerFactory => new LoggerFactory().AddConsole(LogLevel.Trace);
+
+        public static DbContextOptions<ChatClubeContext> dbContextOptions;
+
+  
         public ChatClubeContext()
         {
-            Database.EnsureCreated();
+            if (Database.IsSqlite())
+                Database.EnsureCreated();
         }
 
         public ChatClubeContext(DbContextOptions<ChatClubeContext> options)
             : base(options)
         {
+           
         }
 
         public DbSet<Sala> Sala { get; set; }
 
+    
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        { 
+        {
+
             if (!optionsBuilder.IsConfigured)
             {
-                String databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "chatclube.db");
-                optionsBuilder.UseSqlite($"Filename={databasePath}");
+                String databasePath;
+                 databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "chatclube.db");
+                 optionsBuilder.UseSqlite($"Filename={databasePath}");
+
+                //databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "chatclube.db");
+               // optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ChatClube;Trusted_Connection=True;");
+
 
                 // iOS
                 //var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", "banco.db")
 
             }
+
+            optionsBuilder.UseLoggerFactory(LoggerFactory);
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -164,5 +188,35 @@ namespace com.chatclube.Repository.Config
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+
+        private class CustomLoggerProvider : ILoggerProvider
+        {
+            public ILogger CreateLogger(string categoryName) => new SampleLogger();
+
+            private class SampleLogger : ILogger
+            {
+                public void Log<TState>(
+                    LogLevel logLevel,
+                    EventId eventId,
+                    TState state,
+                    Exception exception,
+                    Func<TState, Exception, string> formatter)
+                {
+                    if (eventId.Id == RelationalEventId.CommandExecuting.Id)
+                    {
+                        var log = formatter(state, exception);
+                        Logs.Add(log);
+                    }
+                }
+
+                public bool IsEnabled(LogLevel logLevel) => true;
+
+                public IDisposable BeginScope<TState>(TState state) => null;
+
+            }
+
+            public void Dispose() { }
+        }
     }
 }

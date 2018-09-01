@@ -14,6 +14,8 @@ namespace com.chatclube.Repository.SalaX
     {
         public async Task<List<Sala>> GetSalasAsync()
         {
+
+
             return await GetAll().ToListAsync();
         }
 

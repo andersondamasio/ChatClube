@@ -15,6 +15,9 @@ namespace ChatClube.Web.SignalR
 
         }
 
+
+
+
         public void Hello()
         {
             Clients.All.hello();
