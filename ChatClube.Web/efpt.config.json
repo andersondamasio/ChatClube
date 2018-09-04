@@ -1,0 +1,1 @@
+﻿{"ContextClassName":"ChatclubeContext","DefaultDacpacSchema":null,"IdReplace":false,"IncludeConnectionString":false,"OutputPath":"","ProjectRootNamespace":"chatclube.com","SelectedToBeGenerated":1,"Tables":["dbo.Sala","dbo.Usuario"],"UseDatabaseNames":true,"UseFluentApiOnly":true,"UseHandleBars":false,"UseInflector":false}

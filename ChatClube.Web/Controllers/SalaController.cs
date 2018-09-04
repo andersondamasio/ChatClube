@@ -1,54 +1,55 @@
-﻿using ChatClube.Web.Data;
-using com.chatclube.Repository.Config;
-using com.chatclube.Repository.SalaX;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+using System.Threading.Tasks;
+using com.chatclube.Data.Repository.Config;
+using com.chatclube.Repository.SalaX;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace ChatClube.Web.Controllers
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace chatclube.com.Controllers
 {
-    public class SalaController : ApiController
+    [Route("api/[controller]")]
+    public class SalaController : Controller
     {
-        // GET api/<controller>
+        private readonly DBContextCoreSQLite dbContextCoreSQLite;
+        private SalaRepository salaRepository;
+        public SalaController(DBContextCoreSQLite dbContextCoreSQLite)
+        {
+            salaRepository = new SalaRepository(dbContextCoreSQLite);
+        }
+
+        // GET: api/<controller>
+        [HttpGet]
         public IEnumerable<string> Get()
         {
-
-         /*   var dbOptions =
-                new DbContextOptionsBuilder<ChatClubeContext>()
-                .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ChatClube;Trusted_Connection=True;");
-                */
-
-           // new ChatClubeContext()
-              var teste =  new SalaRepository().GetAll().ToList();
-
-         
-
+            var teste = salaRepository.GetAll().ToList();
             return new string[] { "value1", "value2" };
         }
 
         // GET api/<controller>/5
+        [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
         // POST api/<controller>
+        [HttpPost]
         public void Post([FromBody]string value)
         {
-            new SalaRepository().InsertUpdateSalaWifi("xy", "asdasd");
-
         }
 
         // PUT api/<controller>/5
+        [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
         // DELETE api/<controller>/5
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
         }

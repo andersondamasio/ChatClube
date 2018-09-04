@@ -10,6 +10,7 @@ using Android.Support.V7.Widget;
 using com.chatclube.Fragments;
 using com.chatclube.Utils;
 using com.chatclube.Repository.SalaX;
+using Microsoft.AspNetCore.SignalR.Client;
 
 namespace com.chatclube.Activities
 {
@@ -23,6 +24,8 @@ namespace com.chatclube.Activities
 
         public static string AzureBackendUrl = "http://localhost:5000";
         public static bool UseMockDataStore = true;
+
+        HubConnection connection;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -45,6 +48,12 @@ namespace com.chatclube.Activities
             viewPagerAdapter.NotifyDataSetChanged();
 
             IniciaProcessos();
+
+
+            connection = new HubConnectionBuilder()
+          .WithUrl("http://192.168.1.6:5000/ChatClubeHub")
+          .Build();
+
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

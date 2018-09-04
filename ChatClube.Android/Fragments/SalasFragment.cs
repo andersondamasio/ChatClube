@@ -34,7 +34,7 @@ namespace com.chatclube.Fragments
         public async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            listSalas = await new SalaRepository().GetSalasAsync();
+            //listSalas = await new SalaRepository().GetSalasAsync();
             adapter = new SalasAdapter(listSalas);
         }
 
@@ -76,7 +76,10 @@ namespace com.chatclube.Fragments
                 adapter = new SalasAdapter(listSalas);
             else
             {
-                listSalas = await new SalaRepository().GetSalasAsync();
+
+                 
+
+           //  listSalas = await new SalaRepository().GetSalasAsync();
                 adapter = new SalasAdapter(listSalas);
                 adapter.NotifyDataSetChanged();
             }

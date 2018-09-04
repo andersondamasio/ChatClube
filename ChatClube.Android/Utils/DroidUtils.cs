@@ -9,7 +9,6 @@ using Android.Widget;
 using System.IO;
 using Android.Media;
 using Org.Apache.Http.Client.Methods;
-using Microsoft.AspNet.SignalR.Client.Http;
 using System.Linq;
 using Android.OS;
 using com.chatclube.Activities;
@@ -19,13 +18,13 @@ using Android.Content.PM;
 using Android.Support.V4.App;
 using System.Diagnostics;
 using Android.Locations;
-using Microsoft.AspNet.SignalR.Client;
 using Newtonsoft.Json;
 using System.Net.Http;
 using Android.Text;
 using com.chatclube.Models;
 using Android;
 using com.chatclube.Models.MensagemX;
+using Microsoft.AspNetCore.SignalR.Client;
 
 namespace com.chatclube.Utils
 {

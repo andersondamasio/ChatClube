@@ -6,7 +6,6 @@ using Android.Views;
 using Android.Widget;
 using com.chatclube.Adapters;
 using com.chatclube.Models;
-using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;
 
@@ -23,7 +22,7 @@ namespace com.chatclube.Activities
         private List<ChatMessage> mensagens = new List<ChatMessage>();
         SalaAdapter salaAdapter = null;
 
-        private IHubProxy mhubProxy;
+      
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
