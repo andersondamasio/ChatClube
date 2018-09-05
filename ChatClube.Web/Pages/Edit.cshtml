@@ -1,0 +1,94 @@
+﻿@page
+@model ChatClube.Web.Pages.EditModel
+
+<h4>Sala</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Sala.IDSala" />
+            <div class="form-group">
+                <label asp-for="Sala.Nome" class="control-label"></label>
+                <input asp-for="Sala.Nome" class="form-control" />
+                <span asp-validation-for="Sala.Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sala.IDTipo" class="control-label"></label>
+                <input asp-for="Sala.IDTipo" class="form-control" />
+                <span asp-validation-for="Sala.IDTipo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sala.BSSIDWifi" class="control-label"></label>
+                <input asp-for="Sala.BSSIDWifi" class="form-control" />
+                <span asp-validation-for="Sala.BSSIDWifi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sala.NumeroUsuariosOnline" class="control-label"></label>
+                <input asp-for="Sala.NumeroUsuariosOnline" class="form-control" />
+                <span asp-validation-for="Sala.NumeroUsuariosOnline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sala.NumeroMaxUsuarios" class="control-label"></label>
+                <input asp-for="Sala.NumeroMaxUsuarios" class="form-control" />
+                <span asp-validation-for="Sala.NumeroMaxUsuarios" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sala.Pais" class="control-label"></label>
+                <input asp-for="Sala.Pais" class="form-control" />
+                <span asp-validation-for="Sala.Pais" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sala.Estado" class="control-label"></label>
+                <input asp-for="Sala.Estado" class="form-control" />
+                <span asp-validation-for="Sala.Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sala.Cidade" class="control-label"></label>
+                <input asp-for="Sala.Cidade" class="form-control" />
+                <span asp-validation-for="Sala.Cidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sala.Cep" class="control-label"></label>
+                <input asp-for="Sala.Cep" class="form-control" />
+                <span asp-validation-for="Sala.Cep" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sala.Rua" class="control-label"></label>
+                <input asp-for="Sala.Rua" class="form-control" />
+                <span asp-validation-for="Sala.Rua" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sala.Latitude" class="control-label"></label>
+                <input asp-for="Sala.Latitude" class="form-control" />
+                <span asp-validation-for="Sala.Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sala.Longitude" class="control-label"></label>
+                <input asp-for="Sala.Longitude" class="form-control" />
+                <span asp-validation-for="Sala.Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sala.IDUsuario" class="control-label"></label>
+                <input asp-for="Sala.IDUsuario" class="form-control" />
+                <span asp-validation-for="Sala.IDUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sala.DataHora" class="control-label"></label>
+                <input asp-for="Sala.DataHora" class="form-control" />
+                <span asp-validation-for="Sala.DataHora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

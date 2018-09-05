@@ -20,7 +20,7 @@ namespace ChatClube.Web.Data.Config
 
         public DBContextCoreSQLServer()
         {
-               // Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
  
 
@@ -42,8 +42,11 @@ namespace ChatClube.Web.Data.Config
             optionsBuilder.UseLoggerFactory(LoggerFactory);
         }
 
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+           
             modelBuilder.Entity<Sala>(entity =>
             {
                 entity.HasKey(e => e.IDSala);
@@ -79,6 +82,7 @@ namespace ChatClube.Web.Data.Config
                 entity.Property(e => e.Pais).HasMaxLength(50);
 
                 entity.Property(e => e.Rua).HasMaxLength(50);
+
 
                 entity.HasOne(d => d.IDUsuarioNavigation)
                     .WithMany(p => p.Sala)
@@ -161,7 +165,7 @@ namespace ChatClube.Web.Data.Config
                     .HasConstraintName("FK_Usuario_Sala");
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

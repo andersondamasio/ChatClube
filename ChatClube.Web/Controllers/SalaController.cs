@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using com.chatclube.Data.Repository.Config;
 using com.chatclube.Repository.SalaX;
+using com.chatclube.SalaX;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,19 +15,12 @@ namespace chatclube.com.Controllers
     [Route("api/[controller]")]
     public class SalaController : Controller
     {
-        private readonly DBContextCoreSQLite dbContextCoreSQLite;
-        private SalaRepository salaRepository;
-        public SalaController(DBContextCoreSQLite dbContextCoreSQLite)
-        {
-            salaRepository = new SalaRepository(dbContextCoreSQLite);
-        }
-
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Sala> Get()
         {
-            var teste = salaRepository.GetAll().ToList();
-            return new string[] { "value1", "value2" };
+            var teste = new SalaRepository().GetAll().ToList();//.ToList();
+            return teste;
         }
 
         // GET api/<controller>/5

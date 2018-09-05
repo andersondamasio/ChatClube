@@ -1,0 +1,97 @@
+﻿@page
+@model ChatClube.Web.Pages.DetailsModel
+
+<div>
+    <h4>Sala</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.IDTipo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.IDTipo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.BSSIDWifi)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.BSSIDWifi)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.NumeroUsuariosOnline)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.NumeroUsuariosOnline)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.NumeroMaxUsuarios)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.NumeroMaxUsuarios)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.Pais)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.Pais)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.Estado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.Estado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.Cidade)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.Cidade)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.Cep)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.Cep)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.Rua)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.Rua)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.Latitude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.Latitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.Longitude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.Longitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.IDUsuario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.IDUsuario)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.DataHora)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sala.DataHora)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Sala.IDSala">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

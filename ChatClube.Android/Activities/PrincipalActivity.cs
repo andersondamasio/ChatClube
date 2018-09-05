@@ -81,6 +81,9 @@ namespace com.chatclube.Activities
                     var info = wiffiInfo.Value.Info;
 
                     new SalaRepository().InsertUpdateSalaWifi(info.SSID, info.BSSID);
+
+
+
                 }
             }
         }

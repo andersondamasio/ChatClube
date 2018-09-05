@@ -8,18 +8,13 @@ using System.Threading.Tasks;
 using com.chatclube.SalaX;
 using System.Text.RegularExpressions;
 using com.chatclube.Data.Repository.Config;
+using chatclube.com.Services;
 
 namespace com.chatclube.Repository.SalaX
 {
-
-    public class MeuRepository
-    {
-    }
         public class SalaRepository : Repository<Sala>
     {
-
-        public SalaRepository(DBContextCoreSQLite dbContextCoreSQLite) :
-            base(dbContextCoreSQLite)
+        public SalaRepository()
         {
         }
 
@@ -38,6 +33,7 @@ namespace com.chatclube.Repository.SalaX
                     if (sala.Nome != Nome)
                     {
                         sala.Nome = Nome;
+                        new ChatDataStore<Sala>().AddAsync(sala);
                         return Update(sala);
                     }
                 }
@@ -48,9 +44,15 @@ namespace com.chatclube.Repository.SalaX
                     sala.Nome = Regex.Replace(Nome, @"\""", string.Empty).Truncate(50, false);
                     sala.BSSIDWifi = BSSIdWifi;
                     sala.IDSala = GetAll().Select(s => s.IDSala).DefaultIfEmpty().Max() + 1;
+
+                    new ChatDataStore<Sala>().AddAsync(sala);
                     return Add(sala);
                 }
-            }catch(Exception ex) { }
+
+                
+
+            }
+            catch(Exception ex) { }
             return 0;
         }
 

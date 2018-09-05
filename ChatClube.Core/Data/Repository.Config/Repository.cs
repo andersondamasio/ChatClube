@@ -8,22 +8,34 @@ using System.Text;
 
 namespace com.chatclube.Repository.Config
 {
-    public interface IEntity
-    {
-    }
-
-    // public class Repository<T> : IRepository<T> where T : class
-    // {
-
     public class Repository<T> : IRepository<T>
-       where T : class, IEntity
+       where T : class
     {
         private DbSet<T> dbSet;
-        private DBContextCoreSQLite DBContext;
 
-        public Repository(DBContextCoreSQLite dbContextCoreSQLite)
+        #region Singleton
+        //private static DbContext instance => GetDBContext();
+        public DbContext DBContext => GetDBContext();
+       // {
+        //    get { return instance; }
+        //}
+        #endregion
+
+        private DbContext GetDBContext()
         {
-            DBContext = dbContextCoreSQLite;
+            switch (DBContextCore.DBContextType)
+            {
+                case DBContextType.SQLite:
+                    return new DBContextCoreSQLite();
+                case DBContextType.SQLServer:
+                    return new DBContextCoreSQLServer();
+                default:
+                    throw new Exception("Nenhum Provedor encontrado.");
+            }
+        }
+
+        public Repository()
+        {
             this.dbSet = DBContext.Set<T>();
         }
 

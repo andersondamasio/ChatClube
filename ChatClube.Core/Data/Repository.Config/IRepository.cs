@@ -5,7 +5,7 @@ using System.Text;
 
 namespace com.chatclube.Repository.Config
 {
-    public interface IRepository<T> where T : class, IEntity
+    public interface IRepository<T> where T : class//, IEntity
     {
         int Add(T item);
         int Update(T item);

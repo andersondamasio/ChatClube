@@ -2,17 +2,19 @@
 using com.chatclube.UsuarioX;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace com.chatclube.SalaX
 {
-    public partial class Sala : IEntity
+    public partial class Sala
     {
         public Sala()
         {
             Usuario = new HashSet<Usuario>();
         }
 
+        //[Key]
         public int IDSala { get; set; }
         public string Nome { get; set; }
         public int? IDTipo { get; set; }
@@ -29,11 +31,9 @@ namespace com.chatclube.SalaX
         public int? IDUsuario { get; set; }
         public DateTime DataHora { get; set; }
 
-        [NotMapped]
         public Usuario IDUsuarioNavigation { get; set; }
-        [NotMapped]
+       
         public ICollection<Usuario> Usuario { get; set; }
-        public int Id { get; set; }
     }
 }
 

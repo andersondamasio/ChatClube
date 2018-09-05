@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using com.chatclube.Repository.Config;
 
 namespace com.chatclube.Activities
 {
@@ -21,7 +22,9 @@ namespace com.chatclube.Activities
 
         public Start(IntPtr handle, JniHandleOwnership transfer)
             : base(handle, transfer)
-        { }
+        {
+            DBContextCore.DBContextType = DBContextType.SQLite;
+        }
 
         public override void OnCreate()
         {

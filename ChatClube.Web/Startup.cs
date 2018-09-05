@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using com.chatclube.Data.Repository.Config;
 using com.chatclube.Repository.SalaX;
+using com.chatclube.Repository.Config;
 
 namespace chatclube.com
 {
@@ -31,17 +32,11 @@ namespace chatclube.com
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
-       
-
-        var op = services.AddDbContext<DBContextCoreSQLite>(
-              options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
             services.AddSignalR();
 
-           // services.AddScoped<MeuRepository, MeuRepository>();
+            DBContextCore.DBContextType = DBContextType.SQLServer;
+            DBContextCore.DBPath = Configuration.GetConnectionString("DefaultConnection");
 
         }
 

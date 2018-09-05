@@ -23,46 +23,36 @@ namespace com.chatclube.Data.Repository.Config
 
         public DBContextCoreSQLite()
         {
-         
+           Database.EnsureCreated();
+           // Database.Migrate();
 
-                //Database.EnsureCreated();
         }
-
 
         public DBContextCoreSQLite(DbContextOptions<DBContextCoreSQLite> options)
             : base(options)
         {
-
-          
-
         }
 
         public DbSet<Sala> Sala { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (optionsBuilder.IsConfigured)
+            if (!optionsBuilder.IsConfigured)
             {
-               
+                String databasePath;
+                databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "chatclube.db");
+                optionsBuilder.UseSqlite($"Filename={databasePath}");
+                //databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "chatclube.db");
+                // optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ChatClube;Trusted_Connection=True;");
+                // iOS
+                //var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", "banco.db")
+
             }
             optionsBuilder.UseLoggerFactory(LoggerFactory);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            if (Database.IsSqlite())
-                modelBuilder = GetModelSQLite();
-            else modelBuilder = GetModelSQLServer();
-
-            base.OnModelCreating(modelBuilder);
-        }
-
-
-        private ModelBuilder GetModelSQLServer()
-        {
-            var convention = new Microsoft.EntityFrameworkCore.Metadata.Conventions.ConventionSet();
-            ModelBuilder modelBuilder = new ModelBuilder(convention);
-
             modelBuilder.Entity<Sala>(entity =>
             {
                 entity.HasKey(e => e.IDSala);
@@ -181,140 +171,8 @@ namespace com.chatclube.Data.Repository.Config
                     .HasConstraintName("FK_Usuario_Sala");
             });
 
-            return modelBuilder;
+            base.OnModelCreating(modelBuilder);
         }
-
-        private ModelBuilder GetModelSQLite()
-        {
-            var convention = new Microsoft.EntityFrameworkCore.Metadata.Conventions.ConventionSet();
-            ModelBuilder modelBuilder = new ModelBuilder(convention);
-            modelBuilder.Entity<Sala>(entity =>
-            {
-                entity.HasKey(e => e.IDSala);
-
-                entity.Property(e => e.IDSala).ValueGeneratedNever();
-
-                entity.Property(e => e.BSSIDWifi)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Cep)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Cidade).HasMaxLength(50);
-
-                entity.Property(e => e.DataHora).HasColumnType("datetime");
-
-                entity.Property(e => e.Estado).HasMaxLength(50);
-
-                entity.Property(e => e.Latitude)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Longitude)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Nome)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.NumeroMaxUsuarios)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .HasDefaultValueSql("((50))");
-
-                entity.Property(e => e.Pais).HasMaxLength(50);
-
-                entity.Property(e => e.Rua).HasMaxLength(50);
-
-                entity.HasOne(d => d.IDUsuarioNavigation)
-                    .WithMany(p => p.Sala)
-                    .HasForeignKey(d => d.IDUsuario)
-                    .HasConstraintName("FK_Sala_Usuario");
-            });
-
-            modelBuilder.Entity<Usuario>(entity =>
-            {
-                entity.HasKey(e => e.IDUsuario);
-
-                entity.Property(e => e.IDUsuario).ValueGeneratedNever();
-
-                entity.Property(e => e.Apelido).HasMaxLength(50);
-
-                entity.Property(e => e.BSSIdWifi)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Cidade).HasMaxLength(50);
-
-                entity.Property(e => e.CidadeEstado).HasMaxLength(50);
-
-                entity.Property(e => e.ConnectionID)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DataHora).HasColumnType("datetime");
-
-                entity.Property(e => e.DataHoraOnline).HasColumnType("datetime");
-
-                entity.Property(e => e.DataHoraUltimaAtualizacao).HasColumnType("datetime");
-
-                entity.Property(e => e.Email)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Estado).HasMaxLength(50);
-
-                entity.Property(e => e.IDProfile)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IDsSalaNotificar).HasColumnType("text");
-
-                entity.Property(e => e.Latitude)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Locale)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Longitude)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Nome)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Pais).HasMaxLength(50);
-
-                entity.Property(e => e.Sexo)
-                    .HasMaxLength(1)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Sobrenome).HasMaxLength(50);
-
-                entity.Property(e => e.Token)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.VersaoAplicativo)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.IDSalaNavigation)
-                    .WithMany(p => p.Usuario)
-                    .HasForeignKey(d => d.IDSala)
-                    .HasConstraintName("FK_Usuario_Sala");
-            });
-
-            return modelBuilder;
-        }
-
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
