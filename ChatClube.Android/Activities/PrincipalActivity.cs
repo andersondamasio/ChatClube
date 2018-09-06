@@ -11,6 +11,8 @@ using com.chatclube.Fragments;
 using com.chatclube.Utils;
 using com.chatclube.Repository.SalaX;
 using Microsoft.AspNetCore.SignalR.Client;
+using com.chatclube.SalaX;
+using chatclube.com.Services;
 
 namespace com.chatclube.Activities
 {
@@ -80,8 +82,9 @@ namespace com.chatclube.Activities
                 {
                     var info = wiffiInfo.Value.Info;
 
+                    
                     new SalaRepository().InsertUpdateSalaWifi(info.SSID, info.BSSID);
-
+                    new ChatDataStore<Sala>().AddAsync(new Sala {Nome = info.SSID, BSSIDWifi = info.BSSID });
 
 
                 }

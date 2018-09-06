@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using chatclube.com.Models;
+using System.Net.Http.Headers;
 
 namespace chatclube.com.Services
 {
@@ -18,9 +19,7 @@ namespace chatclube.com.Services
         public ChatDataStore()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri($"http://192.168.1.6:5000");
-
-            items = new List<T>();
+            client.BaseAddress = new Uri("http://192.168.1.6:51042");
         }
 
         public async Task<bool> AddAsync(T item)
@@ -29,8 +28,9 @@ namespace chatclube.com.Services
                 return false;
 
             var serializedItem = JsonConvert.SerializeObject(item);
-
-            var response = await client.PostAsync($"api/sala", new StringContent(serializedItem, Encoding.UTF8, "application/json"));
+            var content = new StringContent(serializedItem, Encoding.UTF8, "application/json");
+                      
+            var response = await client.PostAsync($"api/sala", content);
 
             return response.IsSuccessStatusCode;
         }

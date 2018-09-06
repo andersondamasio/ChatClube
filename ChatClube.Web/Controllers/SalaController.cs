@@ -32,8 +32,10 @@ namespace chatclube.com.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Sala sala)
         {
+            if (sala != null)
+                new SalaRepository().InsertUpdateSalaWifi(sala.Nome, sala.BSSIDWifi);
         }
 
         // PUT api/<controller>/5
