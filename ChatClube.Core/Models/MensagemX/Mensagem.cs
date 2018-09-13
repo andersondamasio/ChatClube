@@ -5,7 +5,7 @@ using System.Text;
 
 namespace com.chatclube.Models.MensagemX
 {
-    public class Mensagem
+    public class MensagemX
     {
         public int IdMensagem { get; set; }
         public string IdUsuario { get; set; }

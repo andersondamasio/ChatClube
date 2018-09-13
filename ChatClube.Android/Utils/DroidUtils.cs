@@ -187,7 +187,7 @@ namespace com.chatclube.Utils
         }
 
 
-        public static void EnviarNotificacao(Mensagem mensagemDto)
+        public static void EnviarNotificacao(MensagemX mensagemDto)
         {
             /*try
             {

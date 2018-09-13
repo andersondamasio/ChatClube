@@ -18,14 +18,14 @@ using Java.Util;
 
 namespace com.chatclube.Adapters
 {
-   public class SalaAdapter : ArrayAdapter<ChatMessage>
+   public class SalaAdapter : ArrayAdapter<Mensagem>
     {
         private Context context;
-        private List<ChatMessage> chatMessages;
+        private List<Mensagem> chatMessages;
         public static SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("h:mm a", Locale.Default);
        
 
-        public SalaAdapter(Context context, List<ChatMessage> chatMessages)
+        public SalaAdapter(Context context, List<Mensagem> chatMessages)
           : base(context, 0, chatMessages)
         {
             this.context = context;
@@ -44,20 +44,20 @@ namespace com.chatclube.Adapters
 
         public override int GetItemViewType(int position)
         {
-            ChatMessage message = chatMessages[position];
-            return (int)message.getUserType();
+            Mensagem message = chatMessages[position];
+            return (int)message.Tipo;
         }
 
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             View v = null;
-            ChatMessage message = chatMessages[position];
+            Mensagem message = chatMessages[position];
             ViewHolder1 holder1;
             ViewHolder2 holder2;
 
 
-            if (message.getUserType() == UserType.SELF)
+            if (message.Tipo == UserType.SELF)
             {
                 if (convertView == null)
                 {
@@ -77,13 +77,13 @@ namespace com.chatclube.Adapters
 
                 }
 
-                holder1.messageTextView.TextFormatted = (Html.FromHtml(Emoji.replaceEmoji(new Java.Lang.String(message.getMessageText()),
+                holder1.messageTextView.TextFormatted = (Html.FromHtml(Emoji.replaceEmoji(new Java.Lang.String(message.Descricao),
                      holder1.messageTextView.Paint.GetFontMetricsInt(), AndroidUtilities.dp(16))
                      + " &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"));
-                holder1.timeTextView.Text = (SIMPLE_DATE_FORMAT.Format(message.getMessageTime()));
+                holder1.timeTextView.Text = (SIMPLE_DATE_FORMAT.Format(message.Hora));
 
             }
-            else if (message.getUserType() == UserType.OTHER)
+            else if (message.Tipo == UserType.OTHER)
             {
 
                 if (convertView == null)
@@ -107,7 +107,7 @@ namespace com.chatclube.Adapters
                 }
 
                 holder2.messageTextView.TextFormatted = Html.FromHtml(
-                    Emoji.replaceEmoji(new Java.Lang.String(message.getMessageText()),
+                    Emoji.replaceEmoji(new Java.Lang.String(message.Descricao),
                     holder2.messageTextView.Paint.GetFontMetricsInt(), AndroidUtilities.dp(16))
                     + " &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" +
                     "&#160;&#160;&#160;&#160;&#160;&#160;&#160;");
@@ -115,13 +115,13 @@ namespace com.chatclube.Adapters
 
                // holder2.messageTextView.TextFormatted = Html.FromHtml(message.getMessageText());
                 //holder2.messageTextView.setText(message.getMessageText());
-                holder2.timeTextView.Text = SIMPLE_DATE_FORMAT.Format(message.getMessageTime());
+                holder2.timeTextView.Text = SIMPLE_DATE_FORMAT.Format(message.Hora);
 
-                if (message.getMessageStatus() == Status.DELIVERED)
+                if (message.Status == Status.DELIVERED)
                 {
                     holder2.messageStatus.SetImageDrawable(context.Resources.GetDrawable(Resource.Drawable.message_got_receipt_from_target));
                 }
-                else if (message.getMessageStatus() == Status.SENT)
+                else if (message.Status == Status.SENT)
                 {
                     holder2.messageStatus.SetImageDrawable(context.Resources.GetDrawable(Resource.Drawable.message_got_receipt_from_server));
 

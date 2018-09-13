@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChatClube.Web.Data.Config;
 using com.chatclube.Data.Repository.Config;
+using com.chatclube.Repository.Config;
 using com.chatclube.Repository.SalaX;
 using com.chatclube.SalaX;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +17,12 @@ namespace chatclube.com.Controllers
     [Route("api/[controller]")]
     public class SalaController : Controller
     {
+        public SalaController(DBContextCoreSQLServer DBContextCoreSQLServer)
+        {
+
+            DBContextCore.DbType = DBContextCoreSQLServer;
+        }
+
         // GET: api/<controller>
         [HttpGet]
         public List<Sala> Get()

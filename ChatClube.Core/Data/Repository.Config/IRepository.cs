@@ -10,7 +10,6 @@ namespace com.chatclube.Repository.Config
         int Add(T item);
         int Update(T item);
         int Remove(T key);
-        T Get(string id);
         IQueryable<T> GetAll();
     }
 }

@@ -9,11 +9,13 @@ namespace com.chatclube.Repository.Config
     {
         public static string DBPath;
         public static DBContextType DBContextType;
+        public static object DbType;
     }
 
     [Flags]
     public enum DBContextType
     {
+        Default,
         SQLite,
         SQLServer
     }

@@ -10,6 +10,6 @@ namespace chatclube.com.Services
         Task<bool> UpdateAsync(T item);
         Task<bool> DeleteAsync(string id);
         Task<T> GetAsync(string id);
-        Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
+        Task<List<T>> GetSalasAsync(bool forceRefresh = false);
     }
 }

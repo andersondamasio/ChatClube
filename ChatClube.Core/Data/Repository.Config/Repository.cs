@@ -16,16 +16,8 @@ namespace com.chatclube.Repository.Config
 
         #region Singleton
         private static DbContext instance;
-        public DbContext DBContext
-        {
-            get
-            {
-                if (instance == null)
-                    instance = GetDBContext();
-                return instance;
-            }
-        }
-    
+        public DbContext DBContext => GetDBContext();
+
         #endregion
 
         private DbContext GetDBContext()
@@ -35,7 +27,7 @@ namespace com.chatclube.Repository.Config
                 case DBContextType.SQLite:
                     return new DBContextCoreSQLite();
                 case DBContextType.SQLServer:
-                    return new DBContextCoreSQLServer();
+                    return ((DBContextCoreSQLServer)DBContextCore.DbType);
                 default:
                     throw new Exception("Nenhum Provedor encontrado.");
             }
@@ -69,10 +61,7 @@ namespace com.chatclube.Repository.Config
             return SaveChanges();
         }
 
-        public T Get(string id)
-        {
-            throw new NotImplementedException();
-        }
+  
 
         public IQueryable<T> GetAll()
         {

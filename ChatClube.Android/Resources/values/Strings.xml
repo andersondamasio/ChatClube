@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Chat Clube</string>
+    <string name="facebookLogin">Log In to Facebook</string>
+    <string name="app_id">119027014842426</string>
+  
     <string name="salas_proximas">Salas</string>
     <string name="conversas">Conversas</string>
     <string name="notificacoes">Notificações</string>

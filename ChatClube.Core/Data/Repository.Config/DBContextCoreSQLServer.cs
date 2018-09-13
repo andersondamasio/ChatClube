@@ -20,11 +20,11 @@ namespace ChatClube.Web.Data.Config
 
         public DBContextCoreSQLServer()
         {
-            //Database.EnsureCreated();
+            Database.EnsureCreated();
         }
  
 
-        public DBContextCoreSQLServer(DbContextOptions<DBContextCoreSQLServer> options)
+        public DBContextCoreSQLServer(DbContextOptions options)
             : base(options)
         {
            

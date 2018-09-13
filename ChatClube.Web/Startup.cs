@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using com.chatclube.Data.Repository.Config;
 using com.chatclube.Repository.SalaX;
 using com.chatclube.Repository.Config;
+using ChatClube.Web.Data.Config;
 
 namespace chatclube.com
 {
@@ -35,9 +36,9 @@ namespace chatclube.com
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSignalR();
 
+            services.AddDbContext<DBContextCoreSQLServer>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             DBContextCore.DBContextType = DBContextType.SQLServer;
-            DBContextCore.DBPath = Configuration.GetConnectionString("DefaultConnection");
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +59,7 @@ namespace chatclube.com
             app.UseCookiePolicy();
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ChatClubeHub>("/chatHub");
+                routes.MapHub<ChatClubeHub>("/ChatClubeHub");
             });
 
             app.UseMvc();

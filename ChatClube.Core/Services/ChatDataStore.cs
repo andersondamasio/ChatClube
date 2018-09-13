@@ -6,53 +6,67 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using chatclube.com.Models;
 using System.Net.Http.Headers;
+using com.chatclube.Utils;
+using com.chatclube.SalaX;
+using System.Linq;
 
 namespace chatclube.com.Services
 {
-  public class ChatDataStore<T> : IChatDataStore<T>
-     where T : class
-        {
+    public class ChatDataStore<T>
+       where T : class
+    {
+        private HttpClient client;
+        private static ChatDataStore<T> instance = null;
+        private string nomeClass = GetElementType(typeof(T)).ToLower();
 
-            HttpClient client;
-        IEnumerable<T> items;
+        public static ChatDataStore<T> Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new ChatDataStore<T>();
+                }
+                return instance;
+            }
+        }
 
         public ChatDataStore()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("http://192.168.1.6:51042");
+            if (Geral.IsDebug())
+                client.BaseAddress = new Uri("http://192.168.1.6:51042");
+            else
+                client.BaseAddress = new Uri("https://chatclube.azurewebsites.net");
         }
 
         public async Task<bool> AddAsync(T item)
         {
             if (item == null)
                 return false;
-
             var serializedItem = JsonConvert.SerializeObject(item);
             var content = new StringContent(serializedItem, Encoding.UTF8, "application/json");
-                      
-            var response = await client.PostAsync($"api/sala", content);
+
+            var response = await client.PostAsync($"api/{nomeClass}", content);
 
             return response.IsSuccessStatusCode;
         }
 
-        public Task<bool> DeleteAsync(string id)
+        public async Task<T> GetAsync(string ID = "")
+        {      
+            var response = await client.GetStringAsync($"api/{nomeClass}/{ID}");
+            var listSalas = JsonConvert.DeserializeObject<T>(response);
+
+            return listSalas;
+        }
+        internal static string GetElementType(Type type)
         {
-            throw new NotImplementedException();
+            //use type.GenericTypeArguments if exist 
+            if (type.GenericTypeArguments.Any())
+                return type.GenericTypeArguments.First().Name;
+
+            return type.Name;
         }
 
-        public Task<T> GetAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateAsync(T item)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

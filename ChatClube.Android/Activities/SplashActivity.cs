@@ -12,14 +12,20 @@ using Android.Widget;
 
 namespace com.chatclube.Activities
 {
-    [Activity(Label = "SplashActivity")]
-    public class SplashActivity : Activity
+    public class SplashActivity : BaseActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
+
+            var intent = new Intent(this, typeof(LoginActivity));
+            var activity = Intent.GetStringExtra("activity");
+            if (!string.IsNullOrEmpty(activity))
+                intent.PutExtra("activity", activity);
+
+            StartActivity(intent);
+            Finish();
         }
     }
 }

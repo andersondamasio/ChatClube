@@ -35,17 +35,11 @@ namespace com.chatclube.Adapters
           public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
           {
             SalaViewHolder vh = holder as SalaViewHolder;
-
             vh.ovTVNomeSala.Text = itens[position].Nome;
             vh.ovTVNumeroUsuarios.Text = itens[position].Nome;
         }
 
-        public void OnClick(View v)
-        {
-            Intent intent = new Intent(v.Context, typeof(SalaActivity));
-            v.Context.StartActivity(intent);
-        }
-
+  
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
           {
             View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.SalasTemplate, parent, false);
@@ -55,6 +49,15 @@ namespace com.chatclube.Adapters
 
             return vh;
         }
+        public void OnClick(View v)
+        {
+            Intent intent = new Intent(v.Context, typeof(SalaActivity));
+            int itemPosition = ((RecyclerView)v.Parent).GetChildLayoutPosition(v);
+            var item = itens[itemPosition];
+            intent.PutExtra("IDSala", item.IDSala);
+            v.Context.StartActivity(intent);
+        }
+
 
         private class SalaViewHolder : RecyclerView.ViewHolder
         {

@@ -6,6 +6,8 @@ using Android.Views;
 using Android.Widget;
 using com.chatclube.Adapters;
 using com.chatclube.Models;
+using com.chatclube.Services;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 
@@ -19,32 +21,30 @@ namespace com.chatclube.Activities
         private EditText ovET_Mensagem { get { return FindViewById<EditText>(Resource.Id.ovET_Mensagem); } }
         private ListView ovLV_Sala { get { return FindViewById<ListView>(Resource.Id.ovLV_Sala); } }
 
-        private List<ChatMessage> mensagens = new List<ChatMessage>();
+        private List<Mensagem> mensagens = new List<Mensagem>();
         SalaAdapter salaAdapter = null;
+        HubConnection hubConnection;
 
-      
+        int IDSala => Intent.GetIntExtra("IDSala", 0);
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Sala);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
 
-           /* HubConnection hubConnection = new HubConnection("http://localhost:54098/");
-            mhubProxy = hubConnection.CreateHubProxy("ChatHub");
-            try
-            {
-                await hubConnection.Start();
-            }
-            catch (Exception)
-            {
-                //Catch handle Errors.   
-            }
-            mhubProxy.On<string, string>("Enviar", (rawY, initY) => {
-               
-            });*/
+            hubConnection = await SignalR.GetHubConnection();
 
+            hubConnection.On<Mensagem>("ReceberMensagem", (novaMensagem) =>
+            {
+                RunOnUiThread(() =>
+                {
+                    novaMensagem.Tipo = UserType.OTHER;
+                    mensagens.Add(novaMensagem);
+                    AtualizarMensagens();
+                });
+            });
 
             #region eventos
             ovIB_Enviar.SetOnClickListener(this);
@@ -54,18 +54,33 @@ namespace com.chatclube.Activities
 
         }
 
-        private void EnviarMensagem(String messageText, UserType userType)
+        private async void EnviarMensagem(String messageText, UserType userType)
         {
             if (messageText.Trim().Length == 0)
                 return;
 
-            ChatMessage message = new ChatMessage();
-            message.setMessageStatus(Status.SENT);
-            message.setMessageText(messageText);
-            message.setUserType(userType);
-            message.setMessageTime(DateTime.Now.Ticks);
+            Mensagem message = new Mensagem();
+            message.Status = Status.SENT;
+            message.Descricao =messageText;
+            message.Tipo =userType;
+            message.Hora = DateTime.Now.Ticks;
             mensagens.Add(message);
 
+            AtualizarMensagens();
+
+            try
+            {
+                //string messageJson = JsonConvert.SerializeObject(message);
+                await hubConnection.InvokeAsync("EnviarMensagem", message);
+            }
+            catch (Exception ex)
+            {
+               
+            }
+        }
+
+        private void AtualizarMensagens()
+        {
             if (salaAdapter != null)
                 salaAdapter.NotifyDataSetChanged();
             else

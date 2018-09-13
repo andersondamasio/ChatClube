@@ -13,10 +13,11 @@ using com.chatclube.Repository.SalaX;
 using Microsoft.AspNetCore.SignalR.Client;
 using com.chatclube.SalaX;
 using chatclube.com.Services;
+using System.Threading.Tasks;
 
 namespace com.chatclube.Activities
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
     public class PrincipalActivity : BaseActivity
     {
         private TabLayout tabLayout;
@@ -29,7 +30,7 @@ namespace com.chatclube.Activities
 
         HubConnection connection;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Principal);
@@ -42,19 +43,14 @@ namespace com.chatclube.Activities
             viewPager.Adapter = viewPagerAdapter;
             tabLayout.SetupWithViewPager(viewPager);
 
-            salasFragment = new SalasFragment();
 
+            await IniciaProcessos();
+
+            salasFragment = new SalasFragment();
             viewPagerAdapter.AddFragment(salasFragment, GetString(Resource.String.salas_proximas));
             viewPagerAdapter.AddFragment(new Android.Support.V4.App.Fragment(), GetString(Resource.String.conversas));
             viewPagerAdapter.AddFragment(new Android.Support.V4.App.Fragment(), GetString(Resource.String.notificacoes));
             viewPagerAdapter.NotifyDataSetChanged();
-
-            IniciaProcessos();
-
-
-            connection = new HubConnectionBuilder()
-          .WithUrl("http://192.168.1.6:5000/ChatClubeHub")
-          .Build();
 
         }
 
@@ -64,15 +60,15 @@ namespace com.chatclube.Activities
             return base.OnCreateOptionsMenu(menu);
         }
 
-        private async void IniciaProcessos()
+        private async Task IniciaProcessos()
         {
             Xamarin.Essentials.Connectivity.ConnectivityChanged += null;
             Xamarin.Essentials.Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
 
-            SalvarSalaWifi();
+            await SalvarSalaWifi();
         }
 
-        private void SalvarSalaWifi()
+        private async Task SalvarSalaWifi()
         {
             var wiffiInfo = DroidUtils.GetWifi();
 
@@ -81,22 +77,16 @@ namespace com.chatclube.Activities
                 if (wiffiInfo.Value.Info != null)
                 {
                     var info = wiffiInfo.Value.Info;
-
-                    
-                    new SalaRepository().InsertUpdateSalaWifi(info.SSID, info.BSSID);
-                    new ChatDataStore<Sala>().AddAsync(new Sala {Nome = info.SSID, BSSIDWifi = info.BSSID });
-
-
+                    await ChatDataStore<Sala>.Instance.AddAsync(new Sala { Nome = info.SSID, BSSIDWifi = info.BSSID });
                 }
             }
         }
 
-
-        private void Connectivity_ConnectivityChanged(object sender, Xamarin.Essentials.ConnectivityChangedEventArgs e)
+        private async void Connectivity_ConnectivityChanged(object sender, Xamarin.Essentials.ConnectivityChangedEventArgs e)
         {
-           if(e.NetworkAccess == Xamarin.Essentials.NetworkAccess.Internet)
+            if (e.NetworkAccess == Xamarin.Essentials.NetworkAccess.Internet)
             {
-                SalvarSalaWifi();
+                await SalvarSalaWifi();
                 salasFragment.Refresh();
                 Android.Support.V4.App.FragmentTransaction ft = SupportFragmentManager.BeginTransaction();
                 ft.Detach(salasFragment);
