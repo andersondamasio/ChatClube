@@ -12,6 +12,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using chatclube.com.Services;
+using com.chatclube.Data.Repository.UsuarioX;
 using com.chatclube.Services;
 using com.chatclube.UsuarioX;
 using com.chatclube.Utils;
@@ -87,16 +88,34 @@ namespace com.chatclube.Activities
 
         private async Task Conectar(Profile profile)
         {
-            Usuario usuario = new Usuario();
+            Usuario usuarioNovo = new Usuario();
 
-            usuario.Nome = profile.FirstName;
-            usuario.Sobrenome = profile.LastName;
-            usuario.IDProfile = profile.Id;
-            await ChatDataStore<Usuario>.Instance.AddAsync(usuario);
-            await SignalR.GetHubConnection();
+            usuarioNovo.Nome = profile.FirstName;
+            usuarioNovo.Sobrenome = profile.LastName;
+            usuarioNovo.IDProfile = profile.Id;
+            //await ChatDataStore<Usuario>.Instance.AddAsync(usuario);
+            var connection = await SignalR.GetHubConnection();
+
+            Usuario usuario = await new UsuarioRepository().GetUsuarioAsync(usuarioNovo.IDProfile);
+
+            if (usuario == null)
+            {
+               await new UsuarioRepository().SalvarUsuarioAsync(usuarioNovo);
+               await connection.InvokeAsync("Conectar", usuarioNovo);
+            }
+            else
+            {
+                new UsuarioRepository().SalvarUsuarioAsync(usuarioNovo);
+                connection.InvokeAsync("Conectar", usuarioNovo);
+            }
+
+            GetHash();
+
             jaEntrou = true;
             var intent = new Intent(this, typeof(PrincipalActivity));
+            intent.AddFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
             StartActivity(intent);
+            Finish();
         }
 
         void btnTentarNovamente_Click(object sender, EventArgs e)

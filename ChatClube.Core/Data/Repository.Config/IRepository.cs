@@ -7,9 +7,9 @@ namespace com.chatclube.Repository.Config
 {
     public interface IRepository<T> where T : class
     {
-        int Add(T item);
-        int Update(T item);
-        int Remove(T key);
+        System.Threading.Tasks.Task<int> AddAsync(T item);
+        System.Threading.Tasks.Task<int> UpdateAsync(T item);
+        System.Threading.Tasks.Task<int> RemoveAsync(T key);
         IQueryable<T> GetAll();
     }
 }

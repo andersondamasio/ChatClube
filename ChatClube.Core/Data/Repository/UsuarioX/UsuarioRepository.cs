@@ -20,11 +20,19 @@ namespace com.chatclube.Data.Repository.UsuarioX
             return GetAll().Where(s => s.IDProfile == IDProfile).FirstOrDefault();
         }
 
-        public void SalvarUsuario(Usuario usuario)
+        public async Task<Usuario> GetUsuarioAsync(string IDProfile)
         {
-            Usuario usu = GetAll().Where(s => s.IDProfile == usuario.IDProfile).FirstOrDefault();
+            return await GetAll().Where(s => s.IDProfile == IDProfile).FirstOrDefaultAsync();
+        }
+
+        public async Task SalvarUsuarioAsync(Usuario usuario)
+        {
+            Usuario usu = await GetAll().Where(s => s.IDProfile == usuario.IDProfile).FirstOrDefaultAsync();
             if (usu == null)
-                Add(usuario);
+            {
+                usuario.IDUsuario = GetAll().Select(s => s.IDUsuario).DefaultIfEmpty().Max() + 1;
+                await AddAsync(usuario);
+            }
         }
     }
 }

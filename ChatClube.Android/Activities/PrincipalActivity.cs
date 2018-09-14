@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.SignalR.Client;
 using com.chatclube.SalaX;
 using chatclube.com.Services;
 using System.Threading.Tasks;
+using com.chatclube.Services;
 
 namespace com.chatclube.Activities
 {
@@ -86,6 +87,8 @@ namespace com.chatclube.Activities
         {
             if (e.NetworkAccess == Xamarin.Essentials.NetworkAccess.Internet)
             {
+                await SignalR.GetHubConnection();
+
                 await SalvarSalaWifi();
                 salasFragment.Refresh();
                 Android.Support.V4.App.FragmentTransaction ft = SupportFragmentManager.BeginTransaction();

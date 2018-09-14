@@ -43,7 +43,7 @@ namespace chatclube.com.Controllers
         public void Post([FromBody]Sala sala)
         {
             if (sala != null)
-                new SalaRepository().InsertUpdateSalaWifi(sala.Nome, sala.BSSIDWifi);
+                 new SalaRepository().InsertUpdateSalaWifiAsync(sala.Nome, sala.BSSIDWifi);
         }
 
         // PUT api/<controller>/5

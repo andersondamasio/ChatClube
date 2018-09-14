@@ -15,9 +15,7 @@ namespace com.chatclube.Repository.Config
         private DbSet<T> dbSet;
 
         #region Singleton
-        private static DbContext instance;
         public DbContext DBContext => GetDBContext();
-
         #endregion
 
         private DbContext GetDBContext()
@@ -25,7 +23,11 @@ namespace com.chatclube.Repository.Config
             switch (DBContextCore.DBContextType)
             {
                 case DBContextType.SQLite:
-                    return new DBContextCoreSQLite();
+                    {
+                       if(DBContextCore.DbType == null)
+                            DBContextCore.DbType = new DBContextCoreSQLite();
+                        return ((DBContextCoreSQLite)DBContextCore.DbType); ;
+                    }
                 case DBContextType.SQLServer:
                     return ((DBContextCoreSQLServer)DBContextCore.DbType);
                 default:
@@ -38,27 +40,30 @@ namespace com.chatclube.Repository.Config
             this.dbSet = DBContext.Set<T>();
         }
 
-        public int Add(T item)
+        public async System.Threading.Tasks.Task<int> AddAsync(T item)
         {
             var dataHora = item.GetType().GetProperties().Where(s => s.Name.ToLower().EndsWith("datahora")).FirstOrDefault();
             if (dataHora != null)
                 dataHora.SetValue(item, DateTime.Now, null);
 
-            var primarykey = GetKey(item);
-            if(primarykey != null)
-                primarykey.SetValue(item, null, null);
+            if (DBContextCore.DBContextType == DBContextType.SQLServer)
+            {
+                var primarykey = GetKey(item);
+                if (primarykey != null)
+                    primarykey.SetValue(item, null, null);
+            }
 
-            dbSet.Add(item);
+            await dbSet.AddAsync(item);
 
-            return SaveChanges();
+            return await SaveChangesAsync();
         }
 
-        public int Update(T item)
+        public async System.Threading.Tasks.Task<int> UpdateAsync(T item)
         {
             var ultimaAtualizacao = DBContext.GetType().GetProperties().Where(s => s.Name.ToLower().EndsWith("ultimaatualizacao")).FirstOrDefault();
             if (ultimaAtualizacao != null)
                 ultimaAtualizacao.SetValue(DBContext, DateTime.Now, null);
-            return SaveChanges();
+            return await SaveChangesAsync();
         }
 
   
@@ -68,17 +73,17 @@ namespace com.chatclube.Repository.Config
             return dbSet;
         }
 
-        public int Remove(T item)
+        public async System.Threading.Tasks.Task<int> RemoveAsync(T item)
         {
             dbSet.Remove(item);
-            return SaveChanges();
+            return await SaveChangesAsync();
         }
 
-        private int SaveChanges()
+        private async System.Threading.Tasks.Task<int> SaveChangesAsync()
         {
             try
             {
-                int save = DBContext.SaveChanges();
+                int save = await DBContext.SaveChangesAsync();
 
                 return save;
             }

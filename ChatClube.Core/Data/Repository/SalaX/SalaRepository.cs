@@ -23,7 +23,7 @@ namespace com.chatclube.Repository.SalaX
             return await GetAll().ToListAsync();
         }
 
-        public int InsertUpdateSalaWifi(string Nome, string BSSIdWifi)
+        public async Task<int> InsertUpdateSalaWifiAsync(string Nome, string BSSIdWifi)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace com.chatclube.Repository.SalaX
                     if (sala.Nome != Nome)
                     {
                         sala.Nome = Nome;
-                        return Update(sala);
+                        return await UpdateAsync(sala);
                     }
                 }
                 else
@@ -43,7 +43,7 @@ namespace com.chatclube.Repository.SalaX
                     sala.Nome = Regex.Replace(Nome, @"\""", string.Empty).Truncate(50, false);
                     sala.BSSIDWifi = BSSIdWifi;
                     sala.IDSala = GetAll().Select(s => s.IDSala).DefaultIfEmpty().Max() + 1;
-                    return Add(sala);
+                    return await AddAsync(sala);
                 }
             }
             catch(Exception ex) { }
@@ -60,7 +60,7 @@ namespace com.chatclube.Repository.SalaX
             else
                 sala = new Sala { IDSala = sala.IDSala+1, Nome = $"Sala {sala.IDSala + 1}" };
 
-            Add(sala);
+            AddAsync(sala);
         }
     }
 }

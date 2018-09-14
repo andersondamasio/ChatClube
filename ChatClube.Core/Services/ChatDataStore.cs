@@ -53,7 +53,8 @@ namespace chatclube.com.Services
         }
 
         public async Task<T> GetAsync(string ID = "")
-        {      
+        {
+
             var response = await client.GetStringAsync($"api/{nomeClass}/{ID}");
             var listSalas = JsonConvert.DeserializeObject<T>(response);
 

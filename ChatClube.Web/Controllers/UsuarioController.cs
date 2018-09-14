@@ -41,7 +41,7 @@ namespace ChatClube.Web.Controllers
         public void Post([FromBody]Usuario usuario)
         {
             if (usuario != null)
-                usuarioRep.SalvarUsuario(usuario);
+                usuarioRep.SalvarUsuarioAsync(usuario);
         }
     }
 }

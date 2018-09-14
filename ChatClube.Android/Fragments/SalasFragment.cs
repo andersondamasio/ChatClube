@@ -33,12 +33,20 @@ namespace com.chatclube.Fragments
 
         private async void Atualizar(Action callback)
         {
-            listSalas = await new ChatDataStore<List<Sala>>().GetAsync();
-            if (adapter == null)
-                adapter = new SalasAdapter(listSalas);
-            else adapter.NotifyDataSetChanged();
+            try
+            {
 
-            callback.Invoke();
+                listSalas = await new ChatDataStore<List<Sala>>().GetAsync();
+                if (adapter == null)
+                    adapter = new SalasAdapter(listSalas);
+                else adapter.NotifyDataSetChanged();
+
+                callback.Invoke();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public override void OnCreate(Bundle savedInstanceState)
