@@ -5,19 +5,18 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Views;
-using com.chatclube.Adapters;
-using Android.Support.V7.Widget;
-using com.chatclube.Fragments;
-using com.chatclube.Utils;
-using com.chatclube.Repository.SalaX;
-using Microsoft.AspNetCore.SignalR.Client;
-using com.chatclube.SalaX;
 using chatclube.com.Services;
-using System.Threading.Tasks;
+using com.chatclube.Adapters;
+using com.chatclube.Fragments;
+using com.chatclube.SalaX;
 using com.chatclube.Services;
+using com.chatclube.Utils;
+using Microsoft.AspNetCore.SignalR.Client;
+using System.Threading.Tasks;
 
 namespace com.chatclube.Activities
 {
+    //[Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
     public class PrincipalActivity : BaseActivity
     {
@@ -35,15 +34,15 @@ namespace com.chatclube.Activities
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Principal);
-            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
 
-            tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
+            //Android.Widget.Toolbar toolbar = FindViewById<Android.Widget.Toolbar>(Resource.Id.toolbar);
+            //SetActionBar(toolbar);
+
+            tabLayout = FindViewById<Android.Support.Design.Widget.TabLayout>(Resource.Id.tabs);
             viewPager = FindViewById<ViewPager>(Resource.Id.pager);
             viewPagerAdapter = new ViewPagerAdapter(SupportFragmentManager);
             viewPager.Adapter = viewPagerAdapter;
             tabLayout.SetupWithViewPager(viewPager);
-
 
             await IniciaProcessos();
 
@@ -52,7 +51,6 @@ namespace com.chatclube.Activities
             viewPagerAdapter.AddFragment(new Android.Support.V4.App.Fragment(), GetString(Resource.String.conversas));
             viewPagerAdapter.AddFragment(new Android.Support.V4.App.Fragment(), GetString(Resource.String.notificacoes));
             viewPagerAdapter.NotifyDataSetChanged();
-
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

@@ -28,7 +28,7 @@ using Xamarin.Facebook.Login.Widget;
 
 namespace com.chatclube.Activities
 {
-    [Activity(Label = "Chat Clube", MainLauncher = false,  WindowSoftInputMode = SoftInput.AdjustResize, Theme = "@style/AppTheme.SplashScreen", Icon = "@drawable/icon")]
+    //[Activity(Label = "Chat Clube", MainLauncher = false,  WindowSoftInputMode = SoftInput.AdjustResize, Theme = "@style/SplashScreen", Icon = "@drawable/icon")]
     public class LoginActivity : BaseActivity, IFacebookCallback
     {
 
@@ -48,12 +48,9 @@ namespace com.chatclube.Activities
         {
             base.OnCreate(savedInstanceState);
 
-        
-
             RequestWindowFeature(WindowFeatures.NoTitle);
             FacebookSdk.SdkInitialize(ApplicationContext);
             SetContentView(Resource.Layout.Login);
-
 
             btnTentarNovamente.Click += btnTentarNovamente_Click;
 
@@ -64,18 +61,25 @@ namespace com.chatclube.Activities
             profileTracker.OnProfileChanged += profileChanged;
             profileTracker.StartTracking();
 
-            btnFacebook.Visibility = Android.Views.ViewStates.Gone;
+            //btnFacebook.Visibility = Android.Views.ViewStates.Visible;
             btnFacebook.SetReadPermissions("public_profile", "email", "user_friends");
             callBackMgr = CallbackManagerFactory.Create();
             btnFacebook.RegisterCallback(callBackMgr, this);
 
-            if (AccessToken.CurrentAccessToken != null && Profile.CurrentProfile != null)
-            {
-                    await Conectar(Profile.CurrentProfile);
-            }
-            else
-                btnFacebook.Visibility = Android.Views.ViewStates.Visible;
 
+                if (AccessToken.CurrentAccessToken != null && Profile.CurrentProfile != null)
+                {
+                    await Conectar(Profile.CurrentProfile);
+                }
+                else
+                {
+                    btnFacebook.Visibility = Android.Views.ViewStates.Visible;
+
+                 /*   Profile profile = new Profile("100000568434728", "ss", "dd", "s", "das", null);
+                    Conectar(profile);
+                    return;*/
+
+                }
             }
             catch (System.Exception ex)
             {
@@ -88,6 +92,7 @@ namespace com.chatclube.Activities
 
         private async Task Conectar(Profile profile)
         {
+            btnFacebook.Visibility = Android.Views.ViewStates.Gone;
             Usuario usuarioNovo = new Usuario();
 
             usuarioNovo.Nome = profile.FirstName;

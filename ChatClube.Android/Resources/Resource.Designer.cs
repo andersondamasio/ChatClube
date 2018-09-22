@@ -2864,8 +2864,8 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b00bc
 			public const int action0 = 2131427516;
 			
-			// aapt resource value: 0x7f0b00ea
-			public const int action_add = 2131427562;
+			// aapt resource value: 0x7f0b00e9
+			public const int action_add = 2131427561;
 			
 			// aapt resource value: 0x7f0b0088
 			public const int action_bar = 2131427464;
@@ -2915,11 +2915,11 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b0068
 			public const int action_mode_close_button = 2131427432;
 			
-			// aapt resource value: 0x7f0b00e9
-			public const int action_search = 2131427561;
-			
 			// aapt resource value: 0x7f0b00e8
-			public const int action_settings = 2131427560;
+			public const int action_search = 2131427560;
+			
+			// aapt resource value: 0x7f0b00e7
+			public const int action_settings = 2131427559;
 			
 			// aapt resource value: 0x7f0b00bb
 			public const int action_text = 2131427515;
@@ -2960,8 +2960,8 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b0029
 			public const int bottom = 2131427369;
 			
-			// aapt resource value: 0x7f0b00d0
-			public const int bottomlayout = 2131427536;
+			// aapt resource value: 0x7f0b00cf
+			public const int bottomlayout = 2131427535;
 			
 			// aapt resource value: 0x7f0b0026
 			public const int box_count = 2131427366;
@@ -2987,8 +2987,8 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b0055
 			public const int center_vertical = 2131427413;
 			
-			// aapt resource value: 0x7f0b00ce
-			public const int chat_layout = 2131427534;
+			// aapt resource value: 0x7f0b00cd
+			public const int chat_layout = 2131427533;
 			
 			// aapt resource value: 0x7f0b007f
 			public const int checkbox = 2131427455;
@@ -3080,17 +3080,17 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b001e
 			public const int display_always = 2131427358;
 			
-			// aapt resource value: 0x7f0b00e1
-			public const int duration = 2131427553;
+			// aapt resource value: 0x7f0b00e0
+			public const int duration = 2131427552;
 			
 			// aapt resource value: 0x7f0b008a
 			public const int edit_query = 2131427466;
 			
-			// aapt resource value: 0x7f0b00d1
-			public const int emojiButton = 2131427537;
+			// aapt resource value: 0x7f0b00d0
+			public const int emojiButton = 2131427536;
 			
-			// aapt resource value: 0x7f0b00dc
-			public const int empty_view = 2131427548;
+			// aapt resource value: 0x7f0b00db
+			public const int empty_view = 2131427547;
 			
 			// aapt resource value: 0x7f0b0041
 			public const int end = 2131427393;
@@ -3149,8 +3149,8 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b006b
 			public const int image = 2131427435;
 			
-			// aapt resource value: 0x7f0b00d4
-			public const int incoming_layout_bubble = 2131427540;
+			// aapt resource value: 0x7f0b00d3
+			public const int incoming_layout_bubble = 2131427539;
 			
 			// aapt resource value: 0x7f0b00c5
 			public const int info = 2131427525;
@@ -3185,20 +3185,20 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b002f
 			public const int listMode = 2131427375;
 			
-			// aapt resource value: 0x7f0b00de
-			public const int list_image = 2131427550;
+			// aapt resource value: 0x7f0b00dd
+			public const int list_image = 2131427549;
 			
 			// aapt resource value: 0x7f0b006d
 			public const int list_item = 2131427437;
 			
-			// aapt resource value: 0x7f0b00e7
-			public const int masked = 2131427559;
+			// aapt resource value: 0x7f0b00e6
+			public const int masked = 2131427558;
 			
 			// aapt resource value: 0x7f0b00bf
 			public const int media_actions = 2131427519;
 			
-			// aapt resource value: 0x7f0b00e5
-			public const int message = 2131427557;
+			// aapt resource value: 0x7f0b00e4
+			public const int message = 2131427556;
 			
 			// aapt resource value: 0x7f0b00b8
 			public const int messenger_send_button = 2131427512;
@@ -3218,14 +3218,14 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b00a5
 			public const int name = 2131427493;
 			
-			// aapt resource value: 0x7f0b00ec
-			public const int navigation_Conversas = 2131427564;
-			
-			// aapt resource value: 0x7f0b00ed
-			public const int navigation_Notificacoes = 2131427565;
-			
 			// aapt resource value: 0x7f0b00eb
-			public const int navigation_SalasProximas = 2131427563;
+			public const int navigation_Conversas = 2131427563;
+			
+			// aapt resource value: 0x7f0b00ec
+			public const int navigation_Notificacoes = 2131427564;
+			
+			// aapt resource value: 0x7f0b00ea
+			public const int navigation_SalasProximas = 2131427562;
 			
 			// aapt resource value: 0x7f0b00b0
 			public const int navigation_header_container = 2131427504;
@@ -3254,44 +3254,44 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b0023
 			public const int open_graph = 2131427363;
 			
-			// aapt resource value: 0x7f0b00d8
-			public const int outgoing_layout_bubble = 2131427544;
+			// aapt resource value: 0x7f0b00d7
+			public const int outgoing_layout_bubble = 2131427543;
 			
 			// aapt resource value: 0x7f0b00b7
 			public const int ovBT_TentarNovamente = 2131427511;
 			
-			// aapt resource value: 0x7f0b00d2
-			public const int ovET_Mensagem = 2131427538;
+			// aapt resource value: 0x7f0b00d1
+			public const int ovET_Mensagem = 2131427537;
 			
-			// aapt resource value: 0x7f0b00d3
-			public const int ovIB_Enviar = 2131427539;
+			// aapt resource value: 0x7f0b00d2
+			public const int ovIB_Enviar = 2131427538;
 			
 			// aapt resource value: 0x7f0b00b6
 			public const int ovLB_Facebook = 2131427510;
 			
-			// aapt resource value: 0x7f0b00cf
-			public const int ovLV_Sala = 2131427535;
+			// aapt resource value: 0x7f0b00ce
+			public const int ovLV_Sala = 2131427534;
+			
+			// aapt resource value: 0x7f0b00de
+			public const int ovTVNomeSala = 2131427550;
 			
 			// aapt resource value: 0x7f0b00df
-			public const int ovTVNomeSala = 2131427551;
+			public const int ovTVNumeroUsuarios = 2131427551;
 			
-			// aapt resource value: 0x7f0b00e0
-			public const int ovTVNumeroUsuarios = 2131427552;
+			// aapt resource value: 0x7f0b00d4
+			public const int ovTV_Usuario1 = 2131427540;
 			
-			// aapt resource value: 0x7f0b00d5
-			public const int ovTV_Usuario1 = 2131427541;
+			// aapt resource value: 0x7f0b00d8
+			public const int ovTV_Usuario2 = 2131427544;
 			
-			// aapt resource value: 0x7f0b00d9
-			public const int ovTV_Usuario2 = 2131427545;
-			
-			// aapt resource value: 0x7f0b00e2
-			public const int overall_container = 2131427554;
+			// aapt resource value: 0x7f0b00e1
+			public const int overall_container = 2131427553;
 			
 			// aapt resource value: 0x7f0b0024
 			public const int page = 2131427364;
 			
-			// aapt resource value: 0x7f0b00cd
-			public const int pager = 2131427533;
+			// aapt resource value: 0x7f0b00cc
+			public const int pager = 2131427532;
 			
 			// aapt resource value: 0x7f0b0058
 			public const int parallax = 2131427416;
@@ -3317,8 +3317,8 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b0081
 			public const int radio = 2131427457;
 			
-			// aapt resource value: 0x7f0b00db
-			public const int recycler_view = 2131427547;
+			// aapt resource value: 0x7f0b00da
+			public const int recycler_view = 2131427546;
 			
 			// aapt resource value: 0x7f0b002e
 			public const int right = 2131427374;
@@ -3401,11 +3401,11 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b0036
 			public const int showTitle = 2131427382;
 			
-			// aapt resource value: 0x7f0b00e4
-			public const int singleMessage = 2131427556;
-			
 			// aapt resource value: 0x7f0b00e3
-			public const int singleMessageContainer = 2131427555;
+			public const int singleMessage = 2131427555;
+			
+			// aapt resource value: 0x7f0b00e2
+			public const int singleMessageContainer = 2131427554;
 			
 			// aapt resource value: 0x7f0b0022
 			public const int small = 2131427362;
@@ -3455,8 +3455,8 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b0030
 			public const int tabMode = 2131427376;
 			
-			// aapt resource value: 0x7f0b00cc
-			public const int tabs = 2131427532;
+			// aapt resource value: 0x7f0b00cb
+			public const int tabs = 2131427531;
 			
 			// aapt resource value: 0x7f0b0019
 			public const int tag_transition_group = 2131427353;
@@ -3482,14 +3482,14 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b0015
 			public const int textinput_error = 2131427349;
 			
+			// aapt resource value: 0x7f0b00d5
+			public const int textview_message = 2131427541;
+			
 			// aapt resource value: 0x7f0b00d6
-			public const int textview_message = 2131427542;
+			public const int textview_time = 2131427542;
 			
-			// aapt resource value: 0x7f0b00d7
-			public const int textview_time = 2131427543;
-			
-			// aapt resource value: 0x7f0b00dd
-			public const int thumbnail = 2131427549;
+			// aapt resource value: 0x7f0b00dc
+			public const int thumbnail = 2131427548;
 			
 			// aapt resource value: 0x7f0b00a7
 			public const int time = 2131427495;
@@ -3502,9 +3502,6 @@ namespace com.chatclube
 			
 			// aapt resource value: 0x7f0b007b
 			public const int title_template = 2131427451;
-			
-			// aapt resource value: 0x7f0b00cb
-			public const int toolbar = 2131427531;
 			
 			// aapt resource value: 0x7f0b002b
 			public const int top = 2131427371;
@@ -3542,14 +3539,14 @@ namespace com.chatclube
 			// aapt resource value: 0x7f0b0037
 			public const int useLogo = 2131427383;
 			
-			// aapt resource value: 0x7f0b00da
-			public const int user_reply_status = 2131427546;
+			// aapt resource value: 0x7f0b00d9
+			public const int user_reply_status = 2131427545;
 			
 			// aapt resource value: 0x7f0b0016
 			public const int view_offset_helper = 2131427350;
 			
-			// aapt resource value: 0x7f0b00e6
-			public const int visible = 2131427558;
+			// aapt resource value: 0x7f0b00e5
+			public const int visible = 2131427557;
 			
 			// aapt resource value: 0x7f0b004d
 			public const int withText = 2131427405;
@@ -4163,14 +4160,20 @@ namespace com.chatclube
 			// aapt resource value: 0x7f08019c
 			public const int AppTheme = 2131231132;
 			
+			// aapt resource value: 0x7f0801a2
+			public const int AppTheme_AppBarOverlay = 2131231138;
+			
+			// aapt resource value: 0x7f0801a5
+			public const int AppTheme_Login = 2131231141;
+			
+			// aapt resource value: 0x7f08019e
+			public const int AppTheme_NoActionBar = 2131231134;
+			
 			// aapt resource value: 0x7f0801a1
-			public const int AppTheme_AppBarOverlay = 2131231137;
+			public const int AppTheme_PopupOverlay = 2131231137;
 			
-			// aapt resource value: 0x7f0801a0
-			public const int AppTheme_PopupOverlay = 2131231136;
-			
-			// aapt resource value: 0x7f0801a3
-			public const int AppTheme_SplashScreen = 2131231139;
+			// aapt resource value: 0x7f0801a4
+			public const int AppTheme_SplashScreen = 2131231140;
 			
 			// aapt resource value: 0x7f08019d
 			public const int AppThemeComActionBar = 2131231133;
@@ -4718,8 +4721,8 @@ namespace com.chatclube
 			// aapt resource value: 0x7f08000f
 			public const int MessengerButtonText_White_Small = 2131230735;
 			
-			// aapt resource value: 0x7f0801a2
-			public const int MyStyle = 2131231138;
+			// aapt resource value: 0x7f0801a3
+			public const int MyStyle = 2131231139;
 			
 			// aapt resource value: 0x7f08003a
 			public const int Platform_AppCompat = 2131230778;
@@ -5366,11 +5369,11 @@ namespace com.chatclube
 			// aapt resource value: 0x7f080194
 			public const int Widget_Design_TextInputLayout = 2131231124;
 			
-			// aapt resource value: 0x7f08019e
-			public const int chat_text_message_style = 2131231134;
-			
 			// aapt resource value: 0x7f08019f
-			public const int chat_timings = 2131231135;
+			public const int chat_text_message_style = 2131231135;
+			
+			// aapt resource value: 0x7f0801a0
+			public const int chat_timings = 2131231136;
 			
 			// aapt resource value: 0x7f080013
 			public const int com_facebook_activity_theme = 2131230739;
