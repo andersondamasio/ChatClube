@@ -22,7 +22,7 @@ namespace com.chatclube.Adapters
     {
         private Context context;
         private List<Mensagem> chatMessages;
-        public static SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("h:mm a", Locale.Default);
+        public static SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("HH:mm:ss", Locale.Default);
        
 
         public SalaAdapter(Context context, List<Mensagem> chatMessages)
@@ -53,34 +53,66 @@ namespace com.chatclube.Adapters
         {
             View v = null;
             Mensagem message = chatMessages[position];
-            ViewHolder1 holder1;
-            ViewHolder2 holder2;
+            ViewHolder1 holderEnviador;
+            ViewHolder2 holderResposta;
 
 
             if (message.Tipo == UserType.SELF)
             {
                 if (convertView == null)
                 {
-                    v = LayoutInflater.From(context).Inflate(Resource.Layout.Sala_Usu1Template, null, false);
-                    holder1 = new ViewHolder1();
+                    v = LayoutInflater.From(context).Inflate(Resource.Layout.chat_user_send_item, null, false);
+                    holderEnviador = new ViewHolder1();
 
 
-                    holder1.messageTextView = v.FindViewById<TextView>(Resource.Id.textview_message);
-                    holder1.timeTextView = v.FindViewById<TextView>(Resource.Id.textview_time);
-
-                    v.Tag = holder1;
+                    holderEnviador.messageTextView = v.FindViewById<TextView>(Resource.Id.message_text);
+                    holderEnviador.timeTextView = v.FindViewById<TextView>(Resource.Id.time_text);
+                    holderEnviador.messageStatus = v.FindViewById<ImageView>(Resource.Id.user_reply_status);
+                    v.Tag = holderEnviador;
                 }
                 else
                 {
                     v = convertView;
-                    holder1 = (ViewHolder1)v.Tag;
+                    holderEnviador = (ViewHolder1)v.Tag;
 
                 }
 
-                holder1.messageTextView.TextFormatted = (Html.FromHtml(Emoji.replaceEmoji(new Java.Lang.String(message.Descricao),
-                     holder1.messageTextView.Paint.GetFontMetricsInt(), AndroidUtilities.dp(16))
+                /*holderEnviador.messageTextView.TextFormatted = (Html.FromHtml(Emoji.replaceEmoji(new Java.Lang.String(message.Descricao),
+                     holderEnviador.messageTextView.Paint.GetFontMetricsInt(), AndroidUtilities.dp(16))
                      + " &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"));
-                holder1.timeTextView.Text = (SIMPLE_DATE_FORMAT.Format(message.Hora));
+                holderEnviador.timeTextView.Text = (SIMPLE_DATE_FORMAT.Format(message.Hora));
+                */
+
+                //sendHolder.messageTextView.setText(Emoji.replaceEmoji(message.getContactId() + "#" + message.getMsgid() + "\r\n" + message.getMessageText(), sendHolder.messageTextView.getPaint().getFontMetricsInt(), DisplayUtils.dp(16)));
+                holderEnviador.messageTextView.Text = message.Descricao;
+                holderEnviador.timeTextView.Text = message.Hora.ToShortTimeString();
+
+                if (message.Status == Status.NEW)
+                {
+                    holderEnviador.messageStatus.Visibility = ViewStates.Invisible;
+                }
+                else
+                {
+                    holderEnviador.messageStatus.Visibility = ViewStates.Visible;
+                    if (message.Status == Status.SENT)
+                    {
+                        holderEnviador.messageStatus.SetImageDrawable(context.Resources.GetDrawable(Resource.Drawable.ic_double_tick));
+                    }
+                    else if (message.Status == Status.DELIVERED)
+                    {
+                        holderEnviador.messageStatus.SetImageDrawable(context.Resources.GetDrawable(Resource.Drawable.ic_single_tick));
+                    }
+                }
+                /*
+                if (message.Status == Status.DELIVERED)
+                {
+                    holder1.messageStatus.SetImageDrawable(context.Resources.GetDrawable(Resource.Drawable.ic_double_tick));
+                }
+                else if (message.Status == Status.SENT)
+                {
+                    holder1.messageStatus.SetImageDrawable(context.Resources.GetDrawable(Resource.Drawable.ic_single_tick));
+
+                }*/
 
             }
             else if (message.Tipo == UserType.OTHER)
@@ -88,57 +120,54 @@ namespace com.chatclube.Adapters
 
                 if (convertView == null)
                 {
-                    v = LayoutInflater.From(context).Inflate(Resource.Layout.Sala_Usu2Template, null, false);
+                    Boolean groupMessage = true;
+                   if(groupMessage)
+                    v = LayoutInflater.From(context).Inflate(Resource.Layout.chat_user_reply_withsender_item, null, false);
+                   else
+                        v = LayoutInflater.From(context).Inflate(Resource.Layout.chat_user_reply_item, null, false);
 
-                    holder2 = new ViewHolder2();
+                    holderResposta = new ViewHolder2();
 
+                    if (groupMessage)
+                        holderResposta.senderTextView = v.FindViewById<TextView>(Resource.Id.chat_company_reply_author);
 
-                    holder2.messageTextView = v.FindViewById<TextView>(Resource.Id.textview_message);
-                    holder2.timeTextView = v.FindViewById<TextView>(Resource.Id.textview_time);
-                    holder2.messageStatus = v.FindViewById<ImageView>(Resource.Id.user_reply_status);
-                    v.Tag = holder2;
+                    holderResposta.messageTextView = v.FindViewById<TextView>(Resource.Id.message_text);
+                    holderResposta.timeTextView = v.FindViewById<TextView>(Resource.Id.time_text);
+                    v.Tag = holderResposta;
 
                 }
                 else
                 {
                     v = convertView;
-                    holder2 = (ViewHolder2)v.Tag;
+                    holderResposta = (ViewHolder2)v.Tag;
 
                 }
 
-                holder2.messageTextView.TextFormatted = Html.FromHtml(
-                    Emoji.replaceEmoji(new Java.Lang.String(message.Descricao),
-                    holder2.messageTextView.Paint.GetFontMetricsInt(), AndroidUtilities.dp(16))
-                    + " &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" +
-                    "&#160;&#160;&#160;&#160;&#160;&#160;&#160;");
+                /* holder2.messageTextView.TextFormatted = Html.FromHtml(
+                     Emoji.replaceEmoji(new Java.Lang.String(message.Descricao),
+                     holder2.messageTextView.Paint.GetFontMetricsInt(), AndroidUtilities.dp(16))
+                     + " &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" +
+                     "&#160;&#160;&#160;&#160;&#160;&#160;&#160;");*/
+
+                // replyHolder.messageTextView.setText(Emoji.replaceEmoji(message.getContactId() + "#" + message.getMsgid() + "\r\n" + message.getMessageText(), replyHolder.messageTextView.getPaint().getFontMetricsInt(), DisplayUtils.dp(16)));
+                holderResposta.messageTextView.Text = message.Descricao;
+                holderResposta.timeTextView.Text = message.Hora.ToShortTimeString();
 
 
-               // holder2.messageTextView.TextFormatted = Html.FromHtml(message.getMessageText());
-                //holder2.messageTextView.setText(message.getMessageText());
-                holder2.timeTextView.Text = SIMPLE_DATE_FORMAT.Format(message.Hora);
-
-                if (message.Status == Status.DELIVERED)
-                {
-                    holder2.messageStatus.SetImageDrawable(context.Resources.GetDrawable(Resource.Drawable.message_got_receipt_from_target));
-                }
-                else if (message.Status == Status.SENT)
-                {
-                    holder2.messageStatus.SetImageDrawable(context.Resources.GetDrawable(Resource.Drawable.message_got_receipt_from_server));
-
-                }
             }
             return v;
         }
 
         class ViewHolder1 : Java.Lang.Object
         {
+            public ImageView messageStatus;
             public TextView messageTextView;
             public TextView timeTextView;
 
         }
         class ViewHolder2 : Java.Lang.Object
         {
-            public ImageView messageStatus;
+            public TextView senderTextView;
             public TextView messageTextView;
             public TextView timeTextView;
 

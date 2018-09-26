@@ -34,7 +34,8 @@
 				android:paddingLeft="6dp"
 				android:autoLink="web"
 				android:text="ssssssRahul asdasdasdAgrawal is a good boy but he does not know what he wants."
-				android:textSize="15dp" />
+				android:textSize="15dp"
+			/>
 			<TextView
 				android:id="@+id/textview_time"
 				android:layout_height="wrap_content"

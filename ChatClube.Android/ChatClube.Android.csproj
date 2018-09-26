@@ -74,6 +74,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\AndroidUtilities.cs" />
     <Compile Include="Utils\DroidUtils.cs" />
+    <Compile Include="Widgets\ChatLayout.cs" />
     <Compile Include="Widgets\Emoji.cs" />
     <Compile Include="Widgets\EmojiView.cs" />
   </ItemGroup>
@@ -242,12 +243,12 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Sala_Usu1Template.axml">
+    <AndroidResource Include="Resources\layout\Sala_Usu1TemplateOld.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Sala_Usu2Template.axml">
+    <AndroidResource Include="Resources\layout\Sala_Usu2TemplateOld.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -635,6 +636,27 @@
     <AndroidResource Include="Resources\layout\Login.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\chat_user_send_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_single_tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\chat_user_reply_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\chat_user_reply_withsender_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_double_tick.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!--C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\Xamarin\Android

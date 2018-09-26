@@ -9,6 +9,6 @@ namespace com.chatclube.Models
         public String Descricao { get; set; }
         public UserType Tipo { get; set; }
         public Status Status { get; set; }
-        public long Hora { get; set; }
+        public DateTime Hora { get; set; }
     }
 }

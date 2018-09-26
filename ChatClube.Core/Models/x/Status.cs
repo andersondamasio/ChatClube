@@ -6,6 +6,6 @@ namespace com.chatclube.Models
 {
     public enum Status
     {
-        SENT, DELIVERED
+        SENT, DELIVERED, NEW
     }
 }
