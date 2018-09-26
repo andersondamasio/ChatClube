@@ -63,7 +63,7 @@ namespace com.chatclube.Activities
             message.Status = Status.SENT;
             message.Descricao =messageText;
             message.Tipo =userType;
-            message.Hora = DateTime.Now.Ticks;
+            message.Hora = DateTime.Now;
             mensagens.Add(message);
 
             AtualizarMensagens();
