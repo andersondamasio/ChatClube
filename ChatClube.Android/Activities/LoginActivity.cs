@@ -110,11 +110,11 @@ namespace com.chatclube.Activities
             }
             else
             {
-                new UsuarioRepository().SalvarUsuarioAsync(usuarioNovo);
-                connection.InvokeAsync("Conectar", usuarioNovo);
+                await new UsuarioRepository().SalvarUsuarioAsync(usuarioNovo);
+                await connection.InvokeAsync("Conectar", usuarioNovo);
             }
 
-            GetHash();
+            //GetHash();
 
             jaEntrou = true;
             var intent = new Intent(this, typeof(PrincipalActivity));

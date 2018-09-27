@@ -20,21 +20,20 @@ namespace com.chatclube.Services
         {
             try
             {
-                var pauseBetweenFailures = TimeSpan.FromSeconds(20);
-
-                var retryPolicy = Policy.Handle<Exception>().WaitAndRetryForeverAsync(i => pauseBetweenFailures, (exception, timeSpan) =>
-             {});
-
-                await retryPolicy.ExecuteAsync(async () =>
-                {
-                    await GetConnection();
-                });
-
                 if (hubConnectionP == null)
-                    hubConnectionP = await GetConnection();
+                {
+                    var pauseBetweenFailures = TimeSpan.FromSeconds(20);
 
-                hubConnectionP.Closed -= Conn_Closed;
-                hubConnectionP.Closed += Conn_Closed;
+                    var retryPolicy = Policy.Handle<Exception>().WaitAndRetryForeverAsync(i => pauseBetweenFailures, (exception, timeSpan) =>
+                    { });
+
+                    await retryPolicy.ExecuteAsync(async () =>
+                    {
+                        hubConnectionP = await GetConnection();
+                        hubConnectionP.Closed -= Conn_Closed;
+                        hubConnectionP.Closed += Conn_Closed;
+                    });
+                }
 
             }catch(Exception ex)
             {
